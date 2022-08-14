@@ -2,7 +2,9 @@
     "name": "MPrzekop.Nodebasedtexturegenerator.Editor",
     "rootNamespace": "",
     "references": [
-        "MPrzekop.Nodebasedtexturegenerator"
+        "MPrzekop.Nodebasedtexturegenerator",
+        "XNodeEditor",
+        "XNode"
     ],
     "includePlatforms": [
         "Editor"

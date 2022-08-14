@@ -1,5 +1,8 @@
 {
   "name": "com.mprzekop.nodebasedtexturegenerator",
   "version": "1.0.0",
-  "displayName": "Node based texture generator"
+  "displayName": "Node based texture generator",
+  "dependencies": {
+    "com.github.siccity.xnode": "https://github.com/Siccity/xNode.git"
+  }
 }
