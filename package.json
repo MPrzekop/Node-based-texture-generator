@@ -1,5 +1,5 @@
 {
-  "name": "com.organization.package",
+  "name": "com.mprzekop.nodebasedtexturegenerator",
   "version": "1.0.0",
-  "displayName": "Package"
+  "displayName": "Node based texture generator"
 }

@@ -1,8 +1,8 @@
 {
-    "name": "Organization.Package.Editor",
+    "name": "MPrzekop.Nodebasedtexturegenerator.Editor",
     "rootNamespace": "",
     "references": [
-        "Organization.Package"
+        "MPrzekop.Nodebasedtexturegenerator"
     ],
     "includePlatforms": [
         "Editor"
