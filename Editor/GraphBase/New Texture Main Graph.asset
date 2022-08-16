@@ -301,9 +301,9 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   oldMin: 0
-  oldMax: 1
+  oldMax: 0.33
   newMin: 0
-  newMax: 2
+  newMax: 0.23
 --- !u!114 &5344716717382905544
 MonoBehaviour:
   m_ObjectHideFlags: 0
