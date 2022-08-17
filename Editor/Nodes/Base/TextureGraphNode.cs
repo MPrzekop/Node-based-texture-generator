@@ -1,3 +1,4 @@
+using Node_based_texture_generator.Editor.GraphBase;
 using UnityEngine;
 using XNode;
 
@@ -31,6 +32,13 @@ namespace Node_based_texture_generator.Editor.Nodes
         public override void OnCreateConnection(NodePort @from, NodePort to)
         {
             base.OnCreateConnection(@from, to);
+            if (!ValidateConnection())
+            {
+                from.Disconnect(to);
+                return;
+            }
+
+            ValidateConnection();
             OnInputChanged();
             UpdateTexture();
         }
@@ -39,6 +47,10 @@ namespace Node_based_texture_generator.Editor.Nodes
         public override void OnRemoveConnection(NodePort port)
         {
             base.OnRemoveConnection(port);
+            if (!ValidateConnection())
+            {
+            }
+
             OnInputChanged();
             UpdateTexture();
         }
@@ -62,6 +74,11 @@ namespace Node_based_texture_generator.Editor.Nodes
                     connectedNode.OnInputChanged();
                 }
             }
+        }
+
+        bool ValidateConnection()
+        {
+            return ((TextureMainGraph) graph).ValidateGraph();
         }
     }
 }

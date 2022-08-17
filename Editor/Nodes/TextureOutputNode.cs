@@ -4,6 +4,7 @@ using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes
 {
+    [DisallowMultipleNodesAttribute]
     public class TextureOutputNode : TextureGraphNode
     {
         [Input(connectionType = ConnectionType.Override), SerializeField]
