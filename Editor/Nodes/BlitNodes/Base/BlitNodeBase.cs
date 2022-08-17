@@ -29,7 +29,15 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
 
             PrepareOperatingTexture();
             PrepareMaterial();
-            Graphics.Blit(Input, _operatingTexture, BlitMaterial);
+            if (BlitMaterial != null)
+            {
+                Graphics.Blit(Input, _operatingTexture, BlitMaterial);
+            }
+            else
+            {
+                Graphics.Blit(Input, _operatingTexture);
+            }
+
             output = _operatingTexture;
             return output;
         }
