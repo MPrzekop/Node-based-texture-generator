@@ -10,17 +10,16 @@ namespace Node_based_texture_generator.Editor.Nodes
     {
         public override void OnBodyGUI()
         {
-                base.OnBodyGUI();
+            base.OnBodyGUI();
 
-
-            var r = EditorGUILayout.GetControlRect(GUILayout.Height(GetWidth() - 20));
 
             EditorGUILayout.BeginVertical();
             var t = ((TextureGraphNode) target).ResultTexture;
 
-
             if (t != null)
             {
+                var r = EditorGUILayout.GetControlRect(GUILayout.Height(GetWidth() - 20));
+
                 EditorGUI.DrawPreviewTexture(r, t);
             }
 

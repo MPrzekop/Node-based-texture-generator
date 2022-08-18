@@ -24,7 +24,12 @@ namespace Node_based_texture_generator.Editor.GraphBase
 
         bool IsCyclic(Node currentNode, ref List<Node> visited)
         {
-            if (visited.Contains(currentNode)) return true;
+            if (visited.Contains(currentNode))
+            {
+                Debug.Log(currentNode.name + " is cyclic");
+                return true;
+            }
+
             visited.Add(currentNode);
             foreach (var output in currentNode.Outputs)
             {
@@ -32,10 +37,13 @@ namespace Node_based_texture_generator.Editor.GraphBase
                 {
                     if (IsCyclic(c.node, ref visited))
                     {
+                        Debug.Log(currentNode.name + " is cyclic");
                         return true;
                     }
                 }
             }
+
+            visited.Remove(currentNode);
 
             return false;
         }

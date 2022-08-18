@@ -4,7 +4,8 @@
     "references": [
         "MPrzekop.Nodebasedtexturegenerator",
         "XNodeEditor",
-        "XNode"
+        "XNode",
+        "Unity.EditorCoroutines.Editor"
     ],
     "includePlatforms": [
         "Editor"

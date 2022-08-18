@@ -38,12 +38,6 @@ public class GrayscaleNode : BlitNodeBase
             var keyword = keywords.FindKeyword(m.ToEnumMemberAttrValue());
             BlitMaterial.SetKeyword(keyword, m == mode);
         }
-
-
-        foreach (var k in BlitMaterial.enabledKeywords)
-        {
-            Debug.Log(k.name);
-        }
     }
 
     protected override void PrepareOperatingTexture()
