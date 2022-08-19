@@ -50,6 +50,9 @@ MonoBehaviour:
       - fieldName: b
         node: {fileID: 2550401341974639368}
         reroutePoints: []
+      - fieldName: b
+        node: {fileID: -6869595665109503442}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -80,7 +83,7 @@ MonoBehaviour:
   m_Name: Add
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2808, y: 392}
+  position: {x: 2792, y: 552}
   ports:
     keys:
     - a
@@ -105,7 +108,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: 1113729104229380700}
+        node: {fileID: -9193239396088440252}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -591,10 +594,7 @@ MonoBehaviour:
       _node: {fileID: 1113729104229380700}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: b
-        node: {fileID: -6869595665109503442}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
