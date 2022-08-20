@@ -39,12 +39,16 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
 
             if (input == null)
             {
-                ((RenderTexture) output).Release();
-                output = null;
+                if (output != null)
+                {
+                    ((RenderTexture) output).Release();
+                    output = null;
+                }
+
                 return;
             }
 
-            if (output == null)
+            if (output == null || Input.width != output.width || Input.height != output.height)
             {
                 output = new RenderTexture(Input.width, Input.height, 32, RenderTextureFormat.DefaultHDR)
                     {enableRandomWrite = true};
