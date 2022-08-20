@@ -10,7 +10,7 @@ public class ResizeNode : BlitNodeBase
     [Input(backingValue = ShowBackingValue.Unconnected, connectionType = ConnectionType.Override), SerializeField]
     private Vector2Int resolution;
 
-    [Output(), SerializeField] private RenderTexture test;
+
     protected override void PrepareOperatingTexture()
     {
         if (_operatingTexture != null)

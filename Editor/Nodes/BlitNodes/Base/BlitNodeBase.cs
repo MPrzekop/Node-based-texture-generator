@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
 using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
@@ -14,9 +15,25 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
 
         protected RenderTexture _operatingTexture;
 
+        protected CommandBuffer blitBuffer;
+
         protected Texture Input => input;
 
         protected Material BlitMaterial { get; set; }
+
+        protected CommandBuffer BlitBuffer
+        {
+            get
+            {
+                if (blitBuffer == null)
+                {
+                    blitBuffer = new CommandBuffer();
+                }
+
+                return blitBuffer;
+            }
+            set => blitBuffer = value;
+        }
 
         public override Texture GetTexture()
         {
@@ -31,12 +48,14 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
             PrepareMaterial();
             if (BlitMaterial != null)
             {
-                Graphics.Blit(Input, _operatingTexture, BlitMaterial);
+                BlitBuffer.Blit(Input, _operatingTexture, BlitMaterial);
             }
             else
             {
-                Graphics.Blit(Input, _operatingTexture);
+                BlitBuffer.Blit(Input, _operatingTexture);
             }
+
+            ExecuteCommandBuffer();
 
             output = _operatingTexture;
             return output;
@@ -44,13 +63,25 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
 
         protected virtual void PrepareOperatingTexture()
         {
-            if (_operatingTexture != null)
+            if (_operatingTexture != null &&
+                (input.width != _operatingTexture.width || input.height != _operatingTexture.height))
             {
-                _operatingTexture.Release();
+                RenderTexture.ReleaseTemporary(_operatingTexture);
+                _operatingTexture = null;
             }
 
-            _operatingTexture = new RenderTexture(Input.width, Input.height, 32, DefaultFormat.HDR);
-            _operatingTexture.Create();
+            if (_operatingTexture == null)
+            {
+                _operatingTexture =
+                    RenderTexture.GetTemporary(Input.width, Input.height, 32, RenderTextureFormat.DefaultHDR);
+                _operatingTexture.Create();
+            }
+        }
+
+        protected virtual void ExecuteCommandBuffer()
+        {
+            Graphics.ExecuteCommandBuffer(BlitBuffer);
+            BlitBuffer.Clear();
         }
 
         protected override void OnInputChanged()

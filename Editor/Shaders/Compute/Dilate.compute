@@ -1,0 +1,24 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel Dilate
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+Texture2D<float4> Input;
+RWTexture2D<float4> Result;
+int radius;
+
+
+[numthreads(8,8,1)]
+void Dilate(uint3 id : SV_DispatchThreadID)
+{
+    float4 maxv = Input[id.xy];
+    for (int x = -radius; x <= radius; x++)
+    {
+        for (int y = -radius; y <= radius; y++)
+        {
+            if (length(float2(x, y)) > radius)continue;
+            maxv = max(maxv, Input[id.xy + float2(x, y)]);
+        }
+    }
+    Result[id.xy] = maxv;
+}
