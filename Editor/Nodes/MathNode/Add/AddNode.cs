@@ -50,10 +50,9 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
 
         public override Texture GetTexture()
         {
-            if (_typeA == typeof(RenderTexture) && _typeB != null)
-            {
-                return _operatingTexture;
-            }
+            if (_result is Texture t)
+                return t;
+
 
             return null;
 //            throw new System.NotImplementedException();
@@ -65,7 +64,8 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             if (GetPort("a").IsConnected)
             {
                 _inputValueA = GetPort("a").GetInputValue();
-                _typeA = _inputValueA.GetType();
+                if (_inputValueA != null)
+                    _typeA = _inputValueA.GetType();
             }
             else
             {
@@ -87,7 +87,8 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             if (GetPort("b").IsConnected)
             {
                 _inputValueB = GetPort("b").GetInputValue();
-                _typeB = _inputValueB.GetType();
+                if (_inputValueB != null)
+                    _typeB = _inputValueB.GetType();
             }
             else
             {
