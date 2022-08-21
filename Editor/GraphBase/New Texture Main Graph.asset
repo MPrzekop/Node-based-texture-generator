@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Add
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1976, y: -72}
+  position: {x: 3048, y: -344}
   ports:
     keys:
     - a
@@ -25,8 +25,8 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: resolution
-        node: {fileID: 4747172128016100447}
+      - fieldName: value
+        node: {fileID: 0}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -37,8 +37,8 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: resolution
-        node: {fileID: 4747172128016100447}
+      - fieldName: output
+        node: {fileID: 5176095760901608424}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -46,7 +46,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: result
       _node: {fileID: -7791427893813839146}
-      _typeQualifiedName: UnityEngine.Vector2Int, UnityEngine.CoreModule, Version=0.0.0.0,
+      _typeQualifiedName: UnityEngine.Vector4, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 1
@@ -56,72 +56,19 @@ MonoBehaviour:
   a: {fileID: 0}
   b: {fileID: 0}
   resultTargetCache:
-    _fieldName: 
-    _node: {fileID: 0}
-    _typeQualifiedName: 
-    connections: []
+    _fieldName: b
+    _node: {fileID: 4246555281658328077}
+    _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    connections:
+    - fieldName: value
+      node: {fileID: 6469808946109748519}
+      reroutePoints: []
     _direction: 0
-    _connectionType: 0
+    _connectionType: 1
     _typeConstraint: 0
     _dynamic: 0
---- !u!114 &-5126546535120923728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c9fa4e5e5a470e9f67d7e9259205d2, type: 3}
-  m_Name: Dilate
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1624, y: 312}
-  ports:
-    keys:
-    - input
-    - dilationRadius
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: -5126546535120923728}
-      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: 3803309380931049796}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: dilationRadius
-      _node: {fileID: -5126546535120923728}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -5126546535120923728}
-      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: -4065171926967175182}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
-  shader: {fileID: 7200000, guid: da6f64721aa76614eb6c021520b8f716, type: 3}
-  dilationRadius: 5
---- !u!114 &-5110139281949657346
+--- !u!114 &-6740345830278403831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,31 +81,31 @@ MonoBehaviour:
   m_Name: Saturate
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 856, y: 312}
+  position: {x: 2952, y: 440}
   ports:
     keys:
     - input
     - output
     values:
     - _fieldName: input
-      _node: {fileID: -5110139281949657346}
+      _node: {fileID: -6740345830278403831}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: output
-        node: {fileID: 1994992572173588368}
+      - fieldName: result
+        node: {fileID: 3131288113408470043}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: output
-      _node: {fileID: -5110139281949657346}
+      _node: {fileID: -6740345830278403831}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 6032685812295199884}
+        node: {fileID: -1769657285268521712}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -179,7 +126,7 @@ MonoBehaviour:
   m_Name: Add
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2552, y: 184}
+  position: {x: 2504, y: 168}
   ports:
     keys:
     - a
@@ -192,7 +139,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: 8005841940861060015}
+        node: {fileID: 5176095760901608424}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -204,7 +151,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: -4065171926967175182}
+        node: {fileID: 2155452613110606921}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -215,8 +162,8 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.RenderTexture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: texture
-        node: {fileID: -3214479659128976479}
+      - fieldName: a
+        node: {fileID: 3131288113408470043}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -225,8 +172,8 @@ MonoBehaviour:
   a: {fileID: 0}
   b: {fileID: 0}
   resultTargetCache:
-    _fieldName: texture
-    _node: {fileID: -3214479659128976479}
+    _fieldName: a
+    _node: {fileID: 3131288113408470043}
     _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     connections:
@@ -237,7 +184,7 @@ MonoBehaviour:
     _connectionType: 1
     _typeConstraint: 0
     _dynamic: 0
---- !u!114 &-4065171926967175182
+--- !u!114 &-4094883714067704205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,45 +193,75 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 011a4f44c976bfa46aefb4a0fdea662d, type: 3}
-  m_Name: Resize
+  m_Script: {fileID: 11500000, guid: 6f9e822885e95f543b5b24ef1c9481c4, type: 3}
+  m_Name: Remap Colors
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1880, y: 312}
+  position: {x: 2312, y: 648}
   ports:
     keys:
-    - resolution
+    - oldMin
+    - oldMax
+    - newMin
+    - newMax
     - input
     - output
     values:
-    - _fieldName: resolution
-      _node: {fileID: -4065171926967175182}
-      _typeQualifiedName: UnityEngine.Vector2Int, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
+    - _fieldName: oldMin
+      _node: {fileID: -4094883714067704205}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
-      _connectionType: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: oldMax
+      _node: {fileID: -4094883714067704205}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: newMin
+      _node: {fileID: -4094883714067704205}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: newMax
+      _node: {fileID: -4094883714067704205}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: input
-      _node: {fileID: -4065171926967175182}
+      _node: {fileID: -4094883714067704205}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: -5126546535120923728}
+        node: {fileID: 7913345016239626777}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: output
-      _node: {fileID: -4065171926967175182}
+      _node: {fileID: -4094883714067704205}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: b
-        node: {fileID: -4932800701192383737}
+        node: {fileID: 3131288113408470043}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -292,7 +269,10 @@ MonoBehaviour:
       _dynamic: 0
   input: {fileID: 0}
   output: {fileID: 0}
-  resolution: {x: 81, y: 81}
+  oldMin: 0
+  oldMax: 1
+  newMin: -1
+  newMax: 0
 --- !u!114 &-3825795597987961542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +286,7 @@ MonoBehaviour:
   m_Name: Texture
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -328, y: -8}
+  position: {x: 168, y: 328}
   ports:
     keys:
     - texture
@@ -327,6 +307,117 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   texture: {fileID: 2800000, guid: 130708e255e9674419621a5d03f75558, type: 3}
+--- !u!114 &-3244900007255648253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c9fa4e5e5a470e9f67d7e9259205d2, type: 3}
+  m_Name: Dilate
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3448, y: 440}
+  ports:
+    keys:
+    - dilationRadius
+    - input
+    - output
+    values:
+    - _fieldName: dilationRadius
+      _node: {fileID: -3244900007255648253}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: -3244900007255648253}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -1769657285268521712}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -3244900007255648253}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: a
+        node: {fileID: 4246555281658328077}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  shader: {fileID: 7200000, guid: da6f64721aa76614eb6c021520b8f716, type: 3}
+  dilationRadius: 32
+--- !u!114 &-3230587415352853023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c9fa4e5e5a470e9f67d7e9259205d2, type: 3}
+  m_Name: Dilate
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3000, y: 72}
+  ports:
+    keys:
+    - dilationRadius
+    - input
+    - output
+    values:
+    - _fieldName: dilationRadius
+      _node: {fileID: -3230587415352853023}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: -3230587415352853023}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 5176095760901608424}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -3230587415352853023}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  shader: {fileID: 7200000, guid: da6f64721aa76614eb6c021520b8f716, type: 3}
+  dilationRadius: 12
 --- !u!114 &-3214479659128976479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +431,7 @@ MonoBehaviour:
   m_Name: Texture Output
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3064, y: 264}
+  position: {x: 4168, y: 184}
   ports:
     keys:
     - texture
@@ -354,7 +445,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: result
-        node: {fileID: -4932800701192383737}
+        node: {fileID: 4246555281658328077}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -395,6 +486,111 @@ MonoBehaviour:
     filterMode: 0
   resolution: {x: 512, y: 512}
   filterMode: 1
+--- !u!114 &-2447300806590511109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Vector 4 Value
+  m_EditorClassIdentifier: MPrzekop.Nodebasedtexturegenerator.Editor:Node_based_texture_generator.Editor.Nodes.ValueNodes:Vector4ValueNode
+  graph: {fileID: 11400000}
+  position: {x: 3608, y: -168}
+  ports:
+    keys:
+    - value
+    values:
+    - _fieldName: value
+      _node: {fileID: -2447300806590511109}
+      _typeQualifiedName: UnityEngine.Vector4, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {x: 1, y: 1, z: 1, w: 1}
+--- !u!114 &-2017357521475953111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf05c3c1379f0142aff867923cdbdb5, type: 3}
+  m_Name: Float Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3416, y: 168}
+  ports:
+    keys:
+    - value
+    values:
+    - _fieldName: value
+      _node: {fileID: -2017357521475953111}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: a
+        node: {fileID: 4246555281658328077}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: -1
+--- !u!114 &-1769657285268521712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ec3a03979edc846ba751285353add1, type: 3}
+  m_Name: Grayscale
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3192, y: 440}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -1769657285268521712}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -6740345830278403831}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -1769657285268521712}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -3244900007255648253}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  mode: 0
 --- !u!114 &-1453801466093832933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,7 +604,7 @@ MonoBehaviour:
   m_Name: Invert
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 248, y: -56}
+  position: {x: 744, y: 280}
   ports:
     keys:
     - output
@@ -420,10 +616,10 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 1994992572173588368}
+        node: {fileID: 7282984052117271925}
         reroutePoints: []
       - fieldName: input
-        node: {fileID: 7282984052117271925}
+        node: {fileID: 5176095760901608424}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -460,20 +656,23 @@ MonoBehaviour:
   - {fileID: -3214479659128976479}
   - {fileID: 2866568803924182637}
   - {fileID: -1453801466093832933}
-  - {fileID: 6032685812295199884}
   - {fileID: 4747172128016100447}
-  - {fileID: 3803309380931049796}
-  - {fileID: -4065171926967175182}
-  - {fileID: 1994992572173588368}
-  - {fileID: -5110139281949657346}
-  - {fileID: 1113729104229380700}
   - {fileID: 7913345016239626777}
   - {fileID: 8005841940861060015}
-  - {fileID: -5126546535120923728}
   - {fileID: 7282984052117271925}
   - {fileID: -7791427893813839146}
   - {fileID: -4932800701192383737}
---- !u!114 &1113729104229380700
+  - {fileID: 2155452613110606921}
+  - {fileID: 5176095760901608424}
+  - {fileID: 3131288113408470043}
+  - {fileID: -4094883714067704205}
+  - {fileID: -6740345830278403831}
+  - {fileID: 4246555281658328077}
+  - {fileID: -1769657285268521712}
+  - {fileID: -3244900007255648253}
+  - {fileID: -3230587415352853023}
+  - {fileID: 6469808946109748519}
+--- !u!114 &860311661112163084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,37 +681,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061c92aa7dfa4614ab3f5e6ae8d430fd, type: 3}
-  m_Name: Saturate
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 0}
+  m_Name: Vector 4 Value Nodex
+  m_EditorClassIdentifier: MPrzekop.Nodebasedtexturegenerator.Editor:Node_based_texture_generator.Editor.Nodes.ValueNodes:Vector4ValueNodex
   graph: {fileID: 11400000}
-  position: {x: 2902.168, y: 1059.5146}
+  position: {x: 2472, y: -520}
   ports:
     keys:
-    - input
-    - output
+    - value
     values:
-    - _fieldName: input
-      _node: {fileID: 1113729104229380700}
-      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+    - _fieldName: value
+      _node: {fileID: 860311661112163084}
+      _typeQualifiedName: UnityEngine.Vector4, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 1113729104229380700}
-      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: a
+        node: {fileID: -7791427893813839146}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
---- !u!114 &1994992572173588368
+  _resultTexture: {fileID: 0}
+  value: {x: 1, y: 1, z: 1, w: -1}
+--- !u!114 &2155452613110606921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -525,7 +717,7 @@ MonoBehaviour:
   m_Name: Remap Colors
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 600, y: 312}
+  position: {x: 2200, y: 264}
   ports:
     keys:
     - oldMin
@@ -536,7 +728,7 @@ MonoBehaviour:
     - output
     values:
     - _fieldName: oldMin
-      _node: {fileID: 1994992572173588368}
+      _node: {fileID: 2155452613110606921}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
@@ -545,7 +737,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: oldMax
-      _node: {fileID: 1994992572173588368}
+      _node: {fileID: 2155452613110606921}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
@@ -554,7 +746,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: newMin
-      _node: {fileID: 1994992572173588368}
+      _node: {fileID: 2155452613110606921}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
@@ -563,7 +755,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: newMax
-      _node: {fileID: 1994992572173588368}
+      _node: {fileID: 2155452613110606921}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
@@ -572,24 +764,24 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: input
-      _node: {fileID: 1994992572173588368}
+      _node: {fileID: 2155452613110606921}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: -1453801466093832933}
+        node: {fileID: 7282984052117271925}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: output
-      _node: {fileID: 1994992572173588368}
+      _node: {fileID: 2155452613110606921}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: input
-        node: {fileID: -5110139281949657346}
+      - fieldName: b
+        node: {fileID: -4932800701192383737}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -597,10 +789,10 @@ MonoBehaviour:
       _dynamic: 0
   input: {fileID: 0}
   output: {fileID: 0}
-  oldMin: 0.6
-  oldMax: 0.9
+  oldMin: 0
+  oldMax: 1
   newMin: 0
-  newMax: 1
+  newMax: 0.8
 --- !u!114 &2866568803924182637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,7 +806,7 @@ MonoBehaviour:
   m_Name: Invert
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -24, y: -40}
+  position: {x: 472, y: 296}
   ports:
     keys:
     - input
@@ -649,7 +841,7 @@ MonoBehaviour:
       _dynamic: 0
   input: {fileID: 2800000, guid: 130708e255e9674419621a5d03f75558, type: 3}
   output: {fileID: 0}
---- !u!114 &3803309380931049796
+--- !u!114 &3131288113408470043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -658,53 +850,139 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 011a4f44c976bfa46aefb4a0fdea662d, type: 3}
-  m_Name: Resize
+  m_Script: {fileID: 11500000, guid: 57b9b340f69a9574ebb8807baf56d15d, type: 3}
+  m_Name: Add
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1368, y: 312}
+  position: {x: 2712, y: 440}
   ports:
     keys:
-    - resolution
-    - input
-    - output
+    - a
+    - b
+    - result
     values:
-    - _fieldName: resolution
-      _node: {fileID: 3803309380931049796}
-      _typeQualifiedName: UnityEngine.Vector2Int, UnityEngine.CoreModule, Version=0.0.0.0,
+    - _fieldName: a
+      _node: {fileID: 3131288113408470043}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: result
+        node: {fileID: -4932800701192383737}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: input
-      _node: {fileID: 3803309380931049796}
+    - _fieldName: b
+      _node: {fileID: 3131288113408470043}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: 6032685812295199884}
+        node: {fileID: -4094883714067704205}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 3803309380931049796}
-      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+    - _fieldName: result
+      _node: {fileID: 3131288113408470043}
+      _typeQualifiedName: UnityEngine.RenderTexture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -5126546535120923728}
+        node: {fileID: -6740345830278403831}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
+      _dynamic: 1
+  a: {fileID: 0}
+  b: {fileID: 0}
+  resultTargetCache:
+    _fieldName: input
+    _node: {fileID: -6740345830278403831}
+    _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    connections:
+    - fieldName: result
+      node: {fileID: 3131288113408470043}
+      reroutePoints: []
+    _direction: 0
+    _connectionType: 1
+    _typeConstraint: 0
+    _dynamic: 0
+--- !u!114 &4246555281658328077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b9b340f69a9574ebb8807baf56d15d, type: 3}
+  m_Name: Add
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3736, y: 248}
+  ports:
+    keys:
+    - a
+    - b
+    - result
+    values:
+    - _fieldName: a
+      _node: {fileID: 4246555281658328077}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -3244900007255648253}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
       _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
-  resolution: {x: 64, y: 64}
+    - _fieldName: b
+      _node: {fileID: 4246555281658328077}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: value
+        node: {fileID: 6469808946109748519}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: 4246555281658328077}
+      _typeQualifiedName: UnityEngine.RenderTexture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: texture
+        node: {fileID: -3214479659128976479}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  a: {fileID: 0}
+  b: {fileID: 0}
+  resultTargetCache:
+    _fieldName: texture
+    _node: {fileID: -3214479659128976479}
+    _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    connections:
+    - fieldName: result
+      node: {fileID: 4246555281658328077}
+      reroutePoints: []
+    _direction: 0
+    _connectionType: 1
+    _typeConstraint: 0
+    _dynamic: 0
 --- !u!114 &4747172128016100447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,20 +1018,14 @@ MonoBehaviour:
       _node: {fileID: 4747172128016100447}
       _typeQualifiedName: UnityEngine.Vector2Int, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: a
-        node: {fileID: -7791427893813839146}
-        reroutePoints: []
-      - fieldName: b
-        node: {fileID: -7791427893813839146}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   texture: {fileID: 2800000, guid: 130708e255e9674419621a5d03f75558, type: 3}
   resolution: {x: 10, y: 10}
---- !u!114 &6032685812295199884
+--- !u!114 &5176095760901608424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,53 +1034,123 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 011a4f44c976bfa46aefb4a0fdea662d, type: 3}
-  m_Name: Resize
+  m_Script: {fileID: 11500000, guid: 6f9e822885e95f543b5b24ef1c9481c4, type: 3}
+  m_Name: Remap Colors
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1112, y: 312}
+  position: {x: 2200, y: -88}
   ports:
     keys:
+    - oldMin
+    - oldMax
+    - newMin
+    - newMax
     - input
     - output
-    - resolution
     values:
+    - _fieldName: oldMin
+      _node: {fileID: 5176095760901608424}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: oldMax
+      _node: {fileID: 5176095760901608424}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: newMin
+      _node: {fileID: 5176095760901608424}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: newMax
+      _node: {fileID: 5176095760901608424}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
     - _fieldName: input
-      _node: {fileID: 6032685812295199884}
+      _node: {fileID: 5176095760901608424}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: -5110139281949657346}
+        node: {fileID: -1453801466093832933}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: output
-      _node: {fileID: 6032685812295199884}
+      _node: {fileID: 5176095760901608424}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
+      - fieldName: a
+        node: {fileID: -4932800701192383737}
+        reroutePoints: []
       - fieldName: input
-        node: {fileID: 3803309380931049796}
+        node: {fileID: -3230587415352853023}
+        reroutePoints: []
+      - fieldName: b
+        node: {fileID: -7791427893813839146}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: resolution
-      _node: {fileID: 6032685812295199884}
-      _typeQualifiedName: UnityEngine.Vector2Int, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
   input: {fileID: 0}
   output: {fileID: 0}
-  resolution: {x: 128, y: 128}
+  oldMin: 0
+  oldMax: 1
+  newMin: 0
+  newMax: 0.2
+--- !u!114 &6469808946109748519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Float Value Input
+  m_EditorClassIdentifier: MPrzekop.Nodebasedtexturegenerator.Editor:Node_based_texture_generator.Editor.Nodes.ValueNodes:FloatValueInput
+  graph: {fileID: 11400000}
+  position: {x: 3448, y: 88}
+  ports:
+    keys:
+    - value
+    values:
+    - _fieldName: value
+      _node: {fileID: 6469808946109748519}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: b
+        node: {fileID: 4246555281658328077}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: -0.5
 --- !u!114 &7282984052117271925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,7 +1164,7 @@ MonoBehaviour:
   m_Name: Dilate
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 504, y: -456}
+  position: {x: 1000, y: -120}
   ports:
     keys:
     - dilationRadius
@@ -854,7 +1196,10 @@ MonoBehaviour:
       _node: {fileID: 7282984052117271925}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: input
+        node: {fileID: 2155452613110606921}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -862,7 +1207,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   shader: {fileID: 7200000, guid: da6f64721aa76614eb6c021520b8f716, type: 3}
-  dilationRadius: 32
+  dilationRadius: 2
 --- !u!114 &7913345016239626777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +1221,7 @@ MonoBehaviour:
   m_Name: Dilate
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 792, y: -200}
+  position: {x: 1544, y: 296}
   ports:
     keys:
     - input
@@ -903,6 +1248,9 @@ MonoBehaviour:
       - fieldName: input
         node: {fileID: 8005841940861060015}
         reroutePoints: []
+      - fieldName: input
+        node: {fileID: -4094883714067704205}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -919,7 +1267,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   shader: {fileID: 7200000, guid: da6f64721aa76614eb6c021520b8f716, type: 3}
-  dilationRadius: 7
+  dilationRadius: 2
 --- !u!114 &8005841940861060015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,10 +1303,7 @@ MonoBehaviour:
       _node: {fileID: 8005841940861060015}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: a
-        node: {fileID: -4932800701192383737}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0

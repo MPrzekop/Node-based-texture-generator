@@ -15,10 +15,11 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         private Texture a, b;
 
         [SerializeField] private object _result;
-        private Type _typeA, _typeB;
+
         private Texture _operatingTexture;
         private Dictionary<Type, AddNodeAttribute[]> adderTypes;
         private Dictionary<TypePair, Type> pairsToAdder;
+        private const string resultPortName = "result";
 
         [SerializeField] private IAddBehaviour _addBehaviour;
         [SerializeField, HideInInspector] private NodePort resultTargetCache;
@@ -64,20 +65,18 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             if (GetPort("a").IsConnected)
             {
                 _inputValueA = GetPort("a").GetInputValue();
-                if (_inputValueA != null)
-                    _typeA = _inputValueA.GetType();
             }
             else
             {
                 _inputValueA = null;
-                _typeA = null;
+
                 _result = null;
 
                 if (_operatingTexture != null) RenderTexture.ReleaseTemporary((RenderTexture) _operatingTexture);
 
                 try
                 {
-                    RemoveDynamicPort("result");
+                    RemoveDynamicPort(resultPortName);
                 }
                 catch
                 {
@@ -87,18 +86,16 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             if (GetPort("b").IsConnected)
             {
                 _inputValueB = GetPort("b").GetInputValue();
-                if (_inputValueB != null)
-                    _typeB = _inputValueB.GetType();
             }
             else
             {
                 _inputValueB = null;
-                _typeB = null;
+
                 _result = null;
                 if (_operatingTexture != null) RenderTexture.ReleaseTemporary((RenderTexture) _operatingTexture);
                 try
                 {
-                    RemoveDynamicPort("result");
+                    RemoveDynamicPort(resultPortName);
                 }
                 catch
                 {
@@ -107,27 +104,25 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
 
             if (_inputValueA != null && _inputValueB != null)
             {
-                if (_typeA == _typeB)
-                {
-                    add(_inputValueA, _inputValueB);
+                add(_inputValueA, _inputValueB);
 
-                    if (GetPort("result") == null)
-                    {
-                        var port = AddDynamicOutput(_typeA, fieldName: "result");
-                        if (resultTargetCache != null && !String.IsNullOrEmpty(resultTargetCache.fieldName))
-                            port.Connect(resultTargetCache);
-                    }
+                if (GetPort(resultPortName) == null)
+                {
+                    var port = AddDynamicOutput(_inputValueA.GetType(), fieldName: resultPortName);
+                    if (resultTargetCache != null && !String.IsNullOrEmpty(resultTargetCache.fieldName))
+                        port.Connect(resultTargetCache);
                 }
             }
         }
 
         protected override void OnInputChanged()
         {
+            OnValidate();
             GetInputs();
             UpdateTexture();
             try
             {
-                UpdateNode(GetPort("result"));
+                UpdateNode(GetPort(resultPortName));
             }
             catch
             {
@@ -137,9 +132,10 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
 
         public override void OnRemoveConnection(NodePort port)
         {
-            if (port.fieldName != "result")
+            if (port.fieldName != resultPortName)
             {
-                resultTargetCache = GetPort("result").Connection;
+                if (GetPort(resultPortName) != null)
+                    resultTargetCache = GetPort(resultPortName).Connection;
             }
 
             base.OnRemoveConnection(port);
@@ -149,16 +145,12 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         {
             if (_result == null)
                 GetInputs();
-            if (port.fieldName == "result")
+            if (port.fieldName == resultPortName)
             {
-                resultTargetCache = GetPort("result").Connection;
+                resultTargetCache = GetPort(resultPortName).Connection;
 
-                if (_typeA == typeof(RenderTexture))
-                    return (Texture) _result;
-                else
-                {
-                    return _result;
-                }
+
+                return _result;
             }
 
             return null;
