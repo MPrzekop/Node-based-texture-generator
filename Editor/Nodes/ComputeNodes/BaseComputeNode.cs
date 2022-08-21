@@ -9,14 +9,18 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
         [Input(connectionType = ConnectionType.Override), SerializeField]
         private Texture input;
 
-        [Input(connectionType = ConnectionType.Override), SerializeField]
-        private int dilationRadius;
 
         [SerializeField, Output(ShowBackingValue.Never)]
         private Texture output;
 
         [SerializeField] protected ComputeShader shader;
         protected Texture Input => input;
+
+        public Texture Output1
+        {
+            get => output;
+            set => output = value;
+        }
 
 
         private void OnValidate()
@@ -26,7 +30,7 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
 
         public override Texture GetTexture()
         {
-            return output;
+            return Output1;
         }
 
         protected override void OnInputChanged()
@@ -39,26 +43,24 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
 
             if (input == null)
             {
-                if (output != null)
+                if (Output1 != null)
                 {
-                    ((RenderTexture) output).Release();
-                    output = null;
+                    ((RenderTexture) Output1).Release();
+                    Output1 = null;
                 }
 
                 return;
             }
 
-            if (output == null || Input.width != output.width || Input.height != output.height)
+            if (Output1 == null || Input.width != Output1.width || Input.height != Output1.height)
             {
-                output = new RenderTexture(Input.width, Input.height, 32, RenderTextureFormat.DefaultHDR)
+                Output1 = new RenderTexture(Input.width, Input.height, 32, RenderTextureFormat.DefaultHDR)
                     {enableRandomWrite = true};
-                ((RenderTexture) output).Create();
+                ((RenderTexture) Output1).Create();
             }
 
-            shader.SetTexture(GetKernel(), "Input", Input);
-            shader.SetTexture(GetKernel(), "Result", output);
-            shader.SetInt("radius", dilationRadius);
-            shader.Dispatch(GetKernel(), Input.width / 8, Input.height / 8, 1);
+            SetupShader();
+            DispatchShader();
 
             UpdateTexture();
             UpdateNode(GetPort("output"));
@@ -71,7 +73,7 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
             // In this node, there aren't any other outputs than "result".
             if (port.fieldName == "output")
             {
-                return this.output;
+                return this.Output1;
             }
             // Hopefully this won't ever happen, but we need to return something
             // in the odd case that the port isn't "result"
@@ -79,5 +81,12 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
         }
 
         protected abstract int GetKernel();
+        protected abstract void SetupShader();
+
+        protected virtual void DispatchShader()
+        {
+            if (Input.width > 0 && Input.height > 0)
+                shader.Dispatch(GetKernel(), Input.width / 8, Input.height / 8, 1);
+        }
     }
 }

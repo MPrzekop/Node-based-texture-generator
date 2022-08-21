@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Node_based_texture_generator.Editor.Nodes.MathNode.Add;
 using Unity.EditorCoroutines.Editor;
 using UnityEngine;
 using XNode;
@@ -14,6 +17,36 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         [SerializeField] private object _result;
         private Type _typeA, _typeB;
         private Texture _operatingTexture;
+        private Dictionary<Type, AddNodeAttribute[]> adderTypes;
+        private Dictionary<TypePair, Type> pairsToAdder;
+
+        [SerializeField] private IAddBehaviour _addBehaviour;
+        [SerializeField, HideInInspector] private NodePort resultTargetCache;
+
+        private void OnValidate()
+        {
+            if (adderTypes == null || pairsToAdder == null)
+            {
+                adderTypes = new Dictionary<Type, AddNodeAttribute[]>();
+                pairsToAdder = new Dictionary<TypePair, Type>();
+                var allAdders = Utility.Utility.FindAttributeUsers(typeof(AddNodeAttribute));
+                foreach (var adder in allAdders)
+                {
+                    var arr = adder.GetCustomAttributes(typeof(AddNodeAttribute), true).ToArray();
+                    var output = Array.ConvertAll(arr, x => (AddNodeAttribute) x);
+                    foreach (var o in output)
+                    {
+                        pairsToAdder.Add(o.SupportedPair, adder);
+                    }
+
+                    if (arr != null && arr.Length > 0)
+                    {
+                        adderTypes.Add(adder, output
+                        );
+                    }
+                }
+            }
+        }
 
         public override Texture GetTexture()
         {
@@ -78,7 +111,11 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
                     add(_inputValueA, _inputValueB);
 
                     if (GetPort("result") == null)
-                        AddDynamicOutput(_typeA, fieldName: "result");
+                    {
+                        var port = AddDynamicOutput(_typeA, fieldName: "result");
+                        if (resultTargetCache != null && !String.IsNullOrEmpty(resultTargetCache.fieldName))
+                            port.Connect(resultTargetCache);
+                    }
                 }
             }
         }
@@ -97,12 +134,24 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             }
         }
 
+        public override void OnRemoveConnection(NodePort port)
+        {
+            if (port.fieldName != "result")
+            {
+                resultTargetCache = GetPort("result").Connection;
+            }
+
+            base.OnRemoveConnection(port);
+        }
+
         public override object GetValue(NodePort port)
         {
             if (_result == null)
                 GetInputs();
             if (port.fieldName == "result")
             {
+                resultTargetCache = GetPort("result").Connection;
+
                 if (_typeA == typeof(RenderTexture))
                     return (Texture) _result;
                 else
@@ -120,90 +169,29 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
 
         void add(object a, object b)
         {
-            if (_typeA == typeof(int))
+            var pair = new TypePair(a.GetType(), b.GetType());
+            Type value;
+            if (pairsToAdder.TryGetValue(pair, out value))
             {
-                if (a is int aInt && b is int bInt)
+                Debug.Log("have adder " + value.GetType());
+                if (value.GetInterfaces().Contains(typeof(IAddBehaviour)))
                 {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(uint))
-            {
-                if (a is uint aInt && b is uint bInt)
-                {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(float))
-            {
-                if (a is float aInt && b is float bInt)
-                {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(double))
-            {
-                if (a is double aInt && b is double bInt)
-                {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(Vector2))
-            {
-                if (a is Vector2 aInt && b is Vector2 bInt)
-                {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(Vector3))
-            {
-                if (a is Vector3 aInt && b is Vector3 bInt)
-                {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(Vector4))
-            {
-                if (a is Vector4 aInt && b is Vector4 bInt)
-                {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(Vector2Int))
-            {
-                if (a is Vector2Int aInt && b is Vector2Int bInt)
-                {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(Vector3Int))
-            {
-                if (a is Vector3Int aInt && b is Vector3Int bInt)
-                {
-                    _result = aInt + bInt;
-                }
-            }
-            else if (_typeA == typeof(RenderTexture))
-            {
-                if (!(a == null || b == null))
-                {
-                    if (a is RenderTexture aT && b is RenderTexture bT)
+                    var adderInstance = Activator.CreateInstance(value);
+                    if (adderInstance is IAddBehaviour addBehaviour)
                     {
-                        if (_operatingTexture == null)
-                        {
-                            _operatingTexture = RenderTexture.GetTemporary(aT.descriptor);
-                            //_operatingTexture.Create();
-                        }
-
-                        var material = new Material(Shader.Find("Przekop/TextureGraph/AddTextures"));
-                        material.SetTexture("_a", aT);
-                        material.SetTexture("_b", bT);
-                        Graphics.Blit(aT, (RenderTexture) _operatingTexture, material);
-                        //DestroyImmediate(material);
-                        _result = (Texture) _operatingTexture;
-                        UpdateTexture();
+                        _addBehaviour = addBehaviour;
                     }
+
+                    _result = _addBehaviour.Add(a, b);
                 }
+                else
+                {
+                    Debug.Log("does not implement addBehaviour");
+                }
+            }
+            else
+            {
+                Debug.Log("Unsupported types");
             }
         }
     }

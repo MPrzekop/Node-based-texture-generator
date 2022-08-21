@@ -16,8 +16,12 @@ void Dilate(uint3 id : SV_DispatchThreadID)
     {
         for (int y = -radius; y <= radius; y++)
         {
-            if (length(float2(x, y)) > radius)continue;
-            maxv = max(maxv, Input[id.xy + float2(x, y)]);
+            float2 offset = float2(x, y);
+            if (length(offset) > radius)
+            {
+                offset = normalize(offset) * radius;
+            }
+            maxv = max(maxv, Input[id.xy + offset]);
         }
     }
     Result[id.xy] = maxv;

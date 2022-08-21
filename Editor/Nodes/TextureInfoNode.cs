@@ -8,7 +8,7 @@ namespace Node_based_texture_generator.Editor.Nodes
         [Input(connectionType = ConnectionType.Override), SerializeField]
         private Texture texture;
 
-        [Output(ShowBackingValue.Always), SerializeField]
+        [Output(ShowBackingValue.Unconnected), SerializeField]
         private Vector2Int resolution;
 
         public override Texture GetTexture()
