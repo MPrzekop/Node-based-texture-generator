@@ -166,7 +166,6 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             Type value;
             if (pairsToAdder.TryGetValue(pair, out value))
             {
-                Debug.Log("have adder " + value.GetType());
                 if (value.GetInterfaces().Contains(typeof(IAddBehaviour)))
                 {
                     var adderInstance = Activator.CreateInstance(value);

@@ -13,6 +13,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Output.Editor
             GUILayout.Space(20);
             if (GUILayout.Button("Save"))
             {
+                ((TextureOutputNode) target).SaveTexture();
             }
         }
     }

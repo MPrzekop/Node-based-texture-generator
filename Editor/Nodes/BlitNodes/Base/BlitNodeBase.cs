@@ -102,6 +102,10 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
             // In this node, there aren't any other outputs than "result".
             if (port.fieldName == "output")
             {
+                if (output == null)
+                {
+                    UpdateTexture();
+                }
                 return this.output;
             }
             // Hopefully this won't ever happen, but we need to return something
