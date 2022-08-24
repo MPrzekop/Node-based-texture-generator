@@ -113,6 +113,39 @@ MonoBehaviour:
       _dynamic: 0
   input: {fileID: 0}
   output: {fileID: 0}
+--- !u!114 &-5705326852175192307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7950896da55397e42af2ce1229bc9628, type: 3}
+  m_Name: Texture Output
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4536, y: 472}
+  ports:
+    keys:
+    - texture
+    values:
+    - _fieldName: texture
+      _node: {fileID: -5705326852175192307}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -3244900007255648253}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  texture: {fileID: 0}
+  saveFormat: 0
+  filePath: D:/Projekty/Projects/Texture Generator/Assets/texture2.png
 --- !u!114 &-4932800701192383737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +353,7 @@ MonoBehaviour:
   m_Name: Dilate
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3448, y: 440}
+  position: {x: 3528, y: 504}
   ports:
     keys:
     - dilationRadius
@@ -352,7 +385,10 @@ MonoBehaviour:
       _node: {fileID: -3244900007255648253}
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: texture
+        node: {fileID: -5705326852175192307}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -642,6 +678,7 @@ MonoBehaviour:
   - {fileID: 6469808946109748519}
   - {fileID: 4948310345367321807}
   - {fileID: 8668220027563945546}
+  - {fileID: -5705326852175192307}
 --- !u!114 &860311661112163084
 MonoBehaviour:
   m_ObjectHideFlags: 0

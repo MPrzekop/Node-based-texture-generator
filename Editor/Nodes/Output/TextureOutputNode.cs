@@ -15,7 +15,7 @@ namespace Node_based_texture_generator.Editor.Nodes
         TGA
     }
 
-    [DisallowMultipleNodesAttribute]
+
     public class TextureOutputNode : TextureGraphNode
     {
         [Input(connectionType = ConnectionType.Override), SerializeField]
