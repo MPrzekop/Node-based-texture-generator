@@ -52,6 +52,16 @@ namespace Node_based_texture_generator.Editor.Nodes
 
         public override void OnBodyGUI()
         {
+            try
+            {
+                ((TextureGraphNode) target).ONInputUpdate -= SelectChannel;
+            }
+            catch
+            {
+                //ignore
+            }
+
+            ((TextureGraphNode) target).ONInputUpdate += SelectChannel;
             base.OnBodyGUI();
 
 
@@ -80,6 +90,11 @@ namespace Node_based_texture_generator.Editor.Nodes
             EditorGUILayout.EndVertical();
         }
 
+
+        private void SelectChannel()
+        {
+            SelectChannel(_selectedChannel);
+        }
 
         private void SelectChannel(int channel)
         {

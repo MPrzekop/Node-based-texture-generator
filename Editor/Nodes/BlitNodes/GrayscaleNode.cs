@@ -10,8 +10,6 @@ using UnityEngine.Experimental.Rendering;
 
 public class GrayscaleNode : BlitWithInputPort
 {
-    
-   
     public enum GrayscaleMode
     {
         [EnumMember(Value = "_PRZEKOPTEXTUREGRAPHGRAYSCALEMODE_PRZEKOPTEXTUREGRAPHGRAYSCALELUMINANCE")]
@@ -26,11 +24,12 @@ public class GrayscaleNode : BlitWithInputPort
 
     [SerializeField] private GrayscaleMode mode;
 
-    private void OnValidate()
+    protected override void OnValidate()
     {
         PrepareMaterial();
         SetMode();
         OnInputChanged();
+        base.OnValidate();
     }
 
     void SetMode()
@@ -50,7 +49,6 @@ public class GrayscaleNode : BlitWithInputPort
 
     protected override void OnInputChanged()
     {
-       
         base.OnInputChanged();
     }
 

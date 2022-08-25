@@ -8,17 +8,18 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
     {
         [SerializeField, Input()] private float oldMin = 0, oldMax = 1, newMin = 0, newMax = 1;
 
-       
+
         private static readonly int Newmin = Shader.PropertyToID("_newmin");
         private static readonly int Oldmax = Shader.PropertyToID("_oldmax");
         private static readonly int Oldmin = Shader.PropertyToID("_oldmin");
         private static readonly int Newmax = Shader.PropertyToID("_newmax");
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
             OnInputChanged();
+            base.OnValidate();
         }
-    
+
 
         protected override void OnInputChanged()
         {
@@ -28,7 +29,6 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             GetPortValue("newMin", ref newMin);
             GetPortValue("newMax", ref newMax);
 
-           
 
             BlitMaterial.SetFloat(Oldmin, oldMin);
             BlitMaterial.SetFloat(Oldmax, oldMax);

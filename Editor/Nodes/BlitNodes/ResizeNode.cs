@@ -28,9 +28,10 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             BlitMaterial = null;
         }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
             OnInputChanged();
+            base.OnValidate();
         }
 
         protected override void OnInputChanged()
