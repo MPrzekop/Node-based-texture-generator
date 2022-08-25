@@ -601,6 +601,8 @@ MonoBehaviour:
   - {fileID: -5705326852175192307}
   - {fileID: -7026764301795420266}
   - {fileID: 685372971025102850}
+  - {fileID: 3472150798581827015}
+  - {fileID: 6589202236721906701}
 --- !u!114 &685372971025102850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +888,47 @@ MonoBehaviour:
     _connectionType: 1
     _typeConstraint: 0
     _dynamic: 0
+--- !u!114 &3472150798581827015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: General Material Blit
+  m_EditorClassIdentifier: MPrzekop.Nodebasedtexturegenerator.Editor:Node_based_texture_generator.Editor.Nodes.BlitNodes:GeneralMaterialBlit
+  graph: {fileID: 11400000}
+  position: {x: 2958.7134, y: -141.171}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 3472150798581827015}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 3472150798581827015}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  _material: {fileID: 0}
+  _dynamicPorts: []
 --- !u!114 &4246555281658328077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1213,47 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   value: -0.5
+--- !u!114 &6589202236721906701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: General Material Blit
+  m_EditorClassIdentifier: MPrzekop.Nodebasedtexturegenerator.Editor:Node_based_texture_generator.Editor.Nodes.BlitNodes:GeneralMaterialBlit
+  graph: {fileID: 11400000}
+  position: {x: 2531.491, y: -273.2982}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 6589202236721906701}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 6589202236721906701}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  _material: {fileID: 0}
+  _dynamicPorts: []
 --- !u!114 &7282984052117271925
 MonoBehaviour:
   m_ObjectHideFlags: 0
