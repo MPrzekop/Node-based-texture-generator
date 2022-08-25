@@ -82,12 +82,15 @@ MonoBehaviour:
       - fieldName: _b
         node: {fileID: 1044605582215578364}
         reroutePoints: []
+      - fieldName: input
+        node: {fileID: 1370004523397958228}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   output: {fileID: 0}
-  input: {fileID: 2800000, guid: 1028a9ab963ee014eb604a527e73c29b, type: 3}
+  input: {fileID: 2800000, guid: 2741be98b31d56c43ad9cfbcaf99a799, type: 3}
   oldMin: 0
   oldMax: 1
   newMin: 0
@@ -122,7 +125,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  texture: {fileID: 2800000, guid: 9fbef4b79ca3b784ba023cb1331520d5, type: 3}
+  texture: {fileID: 2800000, guid: 130708e255e9674419621a5d03f75558, type: 3}
 --- !u!114 &-4847217537094559877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +189,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  texture: {fileID: 2800000, guid: 1028a9ab963ee014eb604a527e73c29b, type: 3}
+  texture: {fileID: 2800000, guid: 2741be98b31d56c43ad9cfbcaf99a799, type: 3}
 --- !u!114 &-2678665296189278002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +277,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   output: {fileID: 0}
-  input: {fileID: 2800000, guid: 9fbef4b79ca3b784ba023cb1331520d5, type: 3}
+  input: {fileID: 2800000, guid: 130708e255e9674419621a5d03f75558, type: 3}
   oldMin: 0
   oldMax: 1
   newMin: 0
@@ -371,6 +374,7 @@ MonoBehaviour:
   - {fileID: -6777887542281977465}
   - {fileID: -476470468870403815}
   - {fileID: -4847217537094559877}
+  - {fileID: 1370004523397958228}
 --- !u!114 &1044605582215578364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,6 +849,81 @@ MonoBehaviour:
     _connectionType: 1
     _typeConstraint: 1
     _dynamic: 1
+--- !u!114 &1370004523397958228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63124d396fe5c9b43a17047b49cca064, type: 3}
+  m_Name: Split
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3256, y: 376}
+  ports:
+    keys:
+    - input
+    - outputR
+    - outputG
+    - outputB
+    - outputA
+    values:
+    - _fieldName: input
+      _node: {fileID: 1370004523397958228}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -6777887542281977465}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputR
+      _node: {fileID: 1370004523397958228}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputG
+      _node: {fileID: 1370004523397958228}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputB
+      _node: {fileID: 1370004523397958228}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputA
+      _node: {fileID: 1370004523397958228}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  outputR: {fileID: 0}
+  outputG: {fileID: 0}
+  outputB: {fileID: 0}
+  outputA: {fileID: 0}
 --- !u!114 &2278504698677495395
 MonoBehaviour:
   m_ObjectHideFlags: 0
