@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using Node_based_texture_generator.Editor.Nodes.MaterialNodes;
+using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using UnityEngine;
 
-public class SaturateNode : BlitNodeBase
+namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
-   
-
-    protected override void PrepareMaterial()
+    public class SaturateNode : BlitWithInputPort
     {
-        if (BlitMaterial == null)
+        protected override void PrepareMaterial()
         {
-            BlitMaterial = new Material(Shader.Find("Przekop/TextureGraph/Saturate"));
-        }   
+            if (BlitMaterial == null)
+            {
+                BlitMaterial = new Material(Shader.Find("Przekop/TextureGraph/Saturate"));
+            }
+        }
     }
 }

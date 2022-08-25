@@ -1,8 +1,9 @@
+using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using UnityEngine;
 
 namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
 {
-    public class InvertColorsNode : BlitNodeBase
+    public class InvertColorsNode : BlitWithInputPort
     {
         protected override void PrepareMaterial()
         {

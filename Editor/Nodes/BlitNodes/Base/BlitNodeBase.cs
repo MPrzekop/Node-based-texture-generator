@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using XNode;
 
-namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
+namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
 {
     public abstract class BlitNodeBase : TextureGraphNode
     {
-        [Input(connectionType = ConnectionType.Override), SerializeField]
-        private Texture input;
-
         [SerializeField, Output(ShowBackingValue.Never)]
         private Texture output;
 
@@ -17,7 +13,6 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
 
         protected CommandBuffer blitBuffer;
 
-        protected Texture Input => input;
 
         protected Material BlitMaterial { get; set; }
 
@@ -37,7 +32,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
 
         public override Texture GetTexture()
         {
-            if (Input == null)
+            if (GetInputTexture() == null)
             {
                 output = null;
                 return null;
@@ -48,11 +43,11 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
             PrepareMaterial();
             if (BlitMaterial != null)
             {
-                BlitBuffer.Blit(Input, _operatingTexture, BlitMaterial);
+                BlitBuffer.Blit(GetInputTexture(), _operatingTexture, BlitMaterial);
             }
             else
             {
-                BlitBuffer.Blit(Input, _operatingTexture);
+                BlitBuffer.Blit(GetInputTexture(), _operatingTexture);
             }
 
             ExecuteCommandBuffer();
@@ -61,10 +56,13 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
             return output;
         }
 
+        protected abstract Texture GetInputTexture();
+
         protected virtual void PrepareOperatingTexture()
         {
             if (_operatingTexture != null &&
-                (input.width != _operatingTexture.width || input.height != _operatingTexture.height))
+                (GetInputTexture().width != _operatingTexture.width ||
+                 GetInputTexture().height != _operatingTexture.height))
             {
                 RenderTexture.ReleaseTemporary(_operatingTexture);
                 _operatingTexture = null;
@@ -73,7 +71,8 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
             if (_operatingTexture == null)
             {
                 _operatingTexture =
-                    RenderTexture.GetTemporary(Input.width, Input.height, 32, RenderTextureFormat.DefaultHDR);
+                    RenderTexture.GetTemporary(GetInputTexture().width, GetInputTexture().height, 32,
+                        RenderTextureFormat.DefaultHDR);
                 _operatingTexture.Create();
             }
         }
@@ -86,12 +85,6 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
 
         protected override void OnInputChanged()
         {
-            Texture newInput = GetPort("input").GetInputValue<Texture>();
-            if (newInput != Input)
-            {
-                input = newInput;
-            }
-
             UpdateTexture();
             UpdateNode(GetPort("output"));
         }
@@ -106,6 +99,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MaterialNodes
                 {
                     UpdateTexture();
                 }
+
                 return this.output;
             }
             // Hopefully this won't ever happen, but we need to return something

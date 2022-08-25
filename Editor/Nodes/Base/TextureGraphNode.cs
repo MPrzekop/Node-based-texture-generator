@@ -65,6 +65,7 @@ namespace Node_based_texture_generator.Editor.Nodes
             {
                 NodePort connectedPort = output.GetConnection(i);
 
+                if (connectedPort == null) continue;
                 // Get connected ports logic node
                 TextureGraphNode connectedNode = connectedPort.node as TextureGraphNode;
 

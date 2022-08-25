@@ -1,45 +1,45 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Node_based_texture_generator.Editor.Nodes.MaterialNodes;
+using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
-public class ResizeNode : BlitNodeBase
+namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
-    [Input(backingValue = ShowBackingValue.Unconnected, connectionType = ConnectionType.Override), SerializeField]
-    private Vector2Int resolution;
-
-
-    protected override void PrepareOperatingTexture()
+    public class ResizeNode : BlitWithInputPort
     {
-        if (_operatingTexture != null)
+        [Input(backingValue = ShowBackingValue.Unconnected, connectionType = ConnectionType.Override), SerializeField]
+        private Vector2Int resolution;
+
+
+        protected override void PrepareOperatingTexture()
         {
-            _operatingTexture.Release();
+            if (_operatingTexture != null)
+            {
+                _operatingTexture.Release();
+            }
+
+            resolution.x = Mathf.Max(1, resolution.x);
+            resolution.y = Mathf.Max(1, resolution.y);
+            _operatingTexture = new RenderTexture(resolution.x, resolution.y, 32, DefaultFormat.HDR);
+            _operatingTexture.Create();
         }
 
-        resolution.x = Mathf.Max(1, resolution.x);
-        resolution.y = Mathf.Max(1, resolution.y);
-        _operatingTexture = new RenderTexture(resolution.x, resolution.y, 32, DefaultFormat.HDR);
-        _operatingTexture.Create();
-    }
+        protected override void PrepareMaterial()
+        {
+            BlitMaterial = null;
+        }
 
-    protected override void PrepareMaterial()
-    {
-        BlitMaterial = null;
-    }
+        private void OnValidate()
+        {
+            OnInputChanged();
+        }
 
-    private void OnValidate()
-    {
-        OnInputChanged();
-    }
-
-    protected override void OnInputChanged()
-    {
-        if (GetPort("resolution").IsConnected)
-            resolution = GetPort("resolution").GetInputValue<Vector2Int>();
-        PrepareOperatingTexture();
-        UpdateTexture();
-        base.OnInputChanged();
+        protected override void OnInputChanged()
+        {
+            if (GetPort("resolution").IsConnected)
+                resolution = GetPort("resolution").GetInputValue<Vector2Int>();
+            PrepareOperatingTexture();
+            UpdateTexture();
+            base.OnInputChanged();
+        }
     }
 }

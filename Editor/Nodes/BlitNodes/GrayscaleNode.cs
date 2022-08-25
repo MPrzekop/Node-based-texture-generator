@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using Node_based_texture_generator.Editor.Nodes.MaterialNodes;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
-public class GrayscaleNode : BlitNodeBase
+public class GrayscaleNode : BlitWithInputPort
 {
+    
+   
     public enum GrayscaleMode
     {
         [EnumMember(Value = "_PRZEKOPTEXTUREGRAPHGRAYSCALEMODE_PRZEKOPTEXTUREGRAPHGRAYSCALELUMINANCE")]
@@ -38,6 +41,17 @@ public class GrayscaleNode : BlitNodeBase
             var keyword = keywords.FindKeyword(m.ToEnumMemberAttrValue());
             BlitMaterial.SetKeyword(keyword, m == mode);
         }
+    }
+
+    protected override Texture GetInputTexture()
+    {
+        return Input;
+    }
+
+    protected override void OnInputChanged()
+    {
+       
+        base.OnInputChanged();
     }
 
     protected override void PrepareOperatingTexture()

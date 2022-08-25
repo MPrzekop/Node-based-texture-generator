@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Codice.CM.SEIDInfo;
+using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using Node_based_texture_generator.Editor.Nodes.MaterialNodes;
 using UnityEditor;
 using UnityEngine;
@@ -7,14 +10,26 @@ using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
+    [System.Serializable]
+    enum propertyType
+    {
+        Color,
+        Vector,
+        Float,
+        Texture,
+        Int
+    }
+
     public class GeneralMaterialBlit : BlitNodeBase
     {
         [SerializeField] private Material _material;
         [SerializeField, HideInInspector] private List<NodePort> _dynamicPorts = new List<NodePort>();
 
+
         private void OnValidate()
         {
             PrepareMaterial();
+            SetMaterialProperties();
         }
 
         protected override void PrepareMaterial()
@@ -27,48 +42,51 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             BlitMaterial = _material;
         }
 
+
+        void ValidatePortType()
+        {
+        }
+
         void RebuildProperties()
         {
 #if UNITY_EDITOR
 
-            foreach (var port in _dynamicPorts)
-            {
-                RemoveDynamicPort(port);
-            }
 
-            _dynamicPorts.Clear();
+            // foreach (var port in DynamicInputs)
+            // {
+            //     Debug.Log("removing " + port.fieldName);
+            //     RemoveDynamicPort(port);
+            // }
+
+
             if (_material == null) return;
             var properties = UnityEditor.MaterialEditor.GetMaterialProperties((new[] {_material}));
             foreach (var property in properties)
             {
                 NodePort addedPort = null;
+                Type t = typeof(Color);
+
                 switch (property.type)
                 {
                     case MaterialProperty.PropType.Color:
-                        ;
-                        addedPort = AddDynamicInput(typeof(Color), ConnectionType.Override, TypeConstraint.Inherited,
-                            fieldName: property.name);
+                        addedPort = AddPort(property, typeof(Color));
+
                         break;
                     case MaterialProperty.PropType.Vector:
-                        addedPort = AddDynamicInput(typeof(Vector4), ConnectionType.Override, TypeConstraint.Inherited,
-                            fieldName: property.name);
+                        addedPort = AddPort(property, typeof(Vector4));
 
                         break;
                     case MaterialProperty.PropType.Float:
-                        addedPort = AddDynamicInput(typeof(float), ConnectionType.Override, TypeConstraint.Inherited,
-                            fieldName: property.name);
+                        addedPort = AddPort(property, typeof(float));
                         break;
                     case MaterialProperty.PropType.Range:
-                        addedPort = AddDynamicInput(typeof(float), ConnectionType.Override, TypeConstraint.Inherited,
-                            fieldName: property.name);
+                        addedPort = AddPort(property, typeof(float));
                         break;
                     case MaterialProperty.PropType.Texture:
-                        addedPort = AddDynamicInput(typeof(Texture), ConnectionType.Override, TypeConstraint.Inherited,
-                            fieldName: property.name);
+                        addedPort = AddPort(property, typeof(Texture));
                         break;
                     case MaterialProperty.PropType.Int:
-                        addedPort = AddDynamicInput(typeof(int), ConnectionType.Override, TypeConstraint.Inherited,
-                            fieldName: property.name);
+                        addedPort = AddPort(property, typeof(int));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -80,6 +98,80 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
                 }
             }
 #endif
+        }
+
+        private NodePort AddPort(MaterialProperty property, Type t)
+        {
+            NodePort addedPort = null;
+            if (ValidatePortType(property, t))
+            {
+                addedPort = AddDynamicInput(t, ConnectionType.Override,
+                    TypeConstraint.Inherited,
+                    fieldName: property.name);
+            }
+
+            return addedPort;
+        }
+
+
+        private bool ValidatePortType(MaterialProperty property, Type t)
+        {
+            if (HasPort(property.name))
+            {
+                if (GetPort(property.name).ValueType != t)
+                {
+                    RemoveDynamicPort(property.name);
+                    return true;
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
+        void SetMaterialProperties()
+        {
+            if (_material == null) return;
+            foreach (var port in DynamicInputs)
+            {
+                var value = port.GetInputValue();
+                if (value == null) continue;
+                if (value is Color c)
+                {
+                    _material.SetColor(port.fieldName, c);
+                }
+                else if (value is Vector4 v)
+                {
+                    _material.SetVector(port.fieldName, v);
+                }
+                else if (value is float f)
+                {
+                    _material.SetFloat(port.fieldName, f);
+                }
+                else if (value is int i)
+                {
+                    _material.SetInt(port.fieldName, i);
+                }
+                else if (value is Texture t)
+                {
+                    _material.SetTexture(port.fieldName, t);
+                }
+            }
+        }
+
+
+        protected override Texture GetInputTexture()
+        {
+            return _dynamicPorts.FirstOrDefault(x => x.ValueType == typeof(Texture))?.GetInputValue<Texture>();
+            return null;
+        }
+
+        protected override void OnInputChanged()
+        {
+            PrepareMaterial();
+            SetMaterialProperties();
+            base.OnInputChanged();
         }
     }
 }

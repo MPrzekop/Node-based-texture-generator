@@ -1,11 +1,14 @@
+using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using Node_based_texture_generator.Editor.Nodes.MaterialNodes;
 using UnityEngine;
 
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
-    public class RemapColorsNode : BlitNodeBase
+    public class RemapColorsNode : BlitWithInputPort
     {
         [SerializeField, Input()] private float oldMin = 0, oldMax = 1, newMin = 0, newMax = 1;
+
+       
         private static readonly int Newmin = Shader.PropertyToID("_newmin");
         private static readonly int Oldmax = Shader.PropertyToID("_oldmax");
         private static readonly int Oldmin = Shader.PropertyToID("_oldmin");
@@ -15,6 +18,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
         {
             OnInputChanged();
         }
+    
 
         protected override void OnInputChanged()
         {
@@ -23,6 +27,8 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             GetPortValue("oldMax", ref oldMax);
             GetPortValue("newMin", ref newMin);
             GetPortValue("newMax", ref newMax);
+
+           
 
             BlitMaterial.SetFloat(Oldmin, oldMin);
             BlitMaterial.SetFloat(Oldmax, oldMax);
