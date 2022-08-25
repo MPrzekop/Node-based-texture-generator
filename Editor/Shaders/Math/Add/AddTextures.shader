@@ -126,7 +126,7 @@ Shader "Przekop/TextureGraph/AddTextures"
 }
 /*ASEBEGIN
 Version=18935
-249;220;1119;551;906.5;241.5;1;True;False
+249;220;1119;551;1151.235;325.7741;1.296792;True;False
 Node;AmplifyShaderEditor.SamplerNode;1;-592.5,-190.5;Inherit;True;Property;_a;a;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SamplerNode;2;-575.5,83.5;Inherit;True;Property;_b;b;1;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleAddOpNode;3;-208,0;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
@@ -135,4 +135,4 @@ WireConnection;3;0;1;0
 WireConnection;3;1;2;0
 WireConnection;0;0;3;0
 ASEEND*/
-//CHKSM=B360EB32AC4CF247C1D85B0BC3EE028152B7E3BB
+//CHKSM=48F4CB97FABE790D3EC0DEE8F8718B34EE9243E4

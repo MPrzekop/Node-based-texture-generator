@@ -42,11 +42,6 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             BlitMaterial = _material;
         }
 
-
-        void ValidatePortType()
-        {
-        }
-
         void RebuildProperties()
         {
 #if UNITY_EDITOR
@@ -61,6 +56,13 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 
             if (_material == null) return;
             var properties = UnityEditor.MaterialEditor.GetMaterialProperties((new[] {_material}));
+            var disposablePorts = DynamicInputs.Where(x => !properties.Select(p => p.name).Contains(x.fieldName))
+                .ToList();
+            foreach (var port in disposablePorts)
+            {
+                RemoveDynamicPort(port);
+            }
+
             foreach (var property in properties)
             {
                 NodePort addedPort = null;
