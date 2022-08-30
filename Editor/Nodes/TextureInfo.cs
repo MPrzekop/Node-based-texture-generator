@@ -2,7 +2,7 @@ using UnityEngine;
 using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes
-{    [CreateNodeMenu("Texture Generator/Misc/Texture Info")]
+{    [CreateNodeMenu("Texture Generator/Misc/Texture Info",10000)]
 
     public class TextureInfo : TextureGraphNode
     {
