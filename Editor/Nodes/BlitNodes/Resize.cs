@@ -4,7 +4,9 @@ using UnityEngine.Experimental.Rendering;
 
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
-    public class ResizeNode : BlitWithInputPort
+    [CreateNodeMenu("Texture Generator/Image Operations/Resize")]
+
+    public class Resize : BlitWithInputPort
     {
         [Input(backingValue = ShowBackingValue.Unconnected, connectionType = ConnectionType.Override), SerializeField]
         private Vector2Int resolution;

@@ -1,3 +1,4 @@
+using Node_based_texture_generator.Editor.Nodes.MathNode.Multiply.MultiplyBehaviour;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
@@ -6,7 +7,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add.AddBehaviour
 {
     [AddNode(typeof(Texture))]
     [AddNode(typeof(RenderTexture))]
-    public class TextureAddBehaviour : IAddBehaviour
+    public class TextureAddBehaviour : IMathOperationBehaviour
     {
         private RenderTexture result;
 
@@ -34,7 +35,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add.AddBehaviour
             set => _commandBuffer = value;
         }
 
-        public object Add(object a, object b)
+        public object Perform(object a, object b)
         {
             var mat = new Material(Shader.Find("Przekop/TextureGraph/AddTextures"));
             if (a is Texture aTex && b is Texture bTex)

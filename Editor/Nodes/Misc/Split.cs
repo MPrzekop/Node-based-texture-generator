@@ -1,46 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
-using Node_based_texture_generator.Editor.Nodes;
 using UnityEngine;
 using XNode;
 
-public class Split : TextureGraphNode
+namespace Node_based_texture_generator.Editor.Nodes.Misc
 {
-    [Input(connectionType = ConnectionType.Override), SerializeField]
-    private Texture input;
+    
+    [CreateNodeMenu("Texture Generator/Image Operations/Split Colors")]
 
-    [Output(), SerializeField] private Texture outputR, outputG, outputB, outputA;
-    private char[] channels = new[] {'R', 'G', 'B', 'A'};
-
-    protected Texture Input => input;
-
-    public override Texture GetTexture()
+    public class Split : TextureGraphNode
     {
-        return null;
-    }
+        [Input(connectionType = ConnectionType.Override), SerializeField]
+        private Texture input;
 
-    protected override void OnInputChanged()
-    {
-        input = GetPort("input").GetInputValue<Texture>();
-        UpdateTexture();
-        foreach (var output in Outputs)
+        [Output(), SerializeField] private Texture outputR, outputG, outputB, outputA;
+        private char[] channels = new[] {'R', 'G', 'B', 'A'};
+
+        protected Texture Input => input;
+
+        public override Texture GetTexture()
         {
-            UpdateNode(output);
+            return null;
         }
-    }
 
-    public override object GetValue(NodePort port)
-    {
-        Texture[] t = new[] {outputR, outputG, outputB, outputA};
-        for (var index = 0; index < channels.Length; index++)
+        protected override void OnInputChanged()
         {
-            var channel = channels[index];
-            if (port.fieldName == "output" + channel)
+            input = GetPort("input").GetInputValue<Texture>();
+            UpdateTexture();
+            foreach (var output in Outputs)
             {
-                return t[index];
+                UpdateNode(output);
             }
         }
 
-        return null;
+        public override object GetValue(NodePort port)
+        {
+            Texture[] t = new[] {outputR, outputG, outputB, outputA};
+            for (var index = 0; index < channels.Length; index++)
+            {
+                var channel = channels[index];
+                if (port.fieldName == "output" + channel)
+                {
+                    return t[index];
+                }
+            }
+
+            return null;
+        }
     }
 }

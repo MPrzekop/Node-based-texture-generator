@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Node_based_texture_generator.Editor.Nodes.MathNode.Add;
+using Node_based_texture_generator.Editor.Nodes.MathNode.Multiply;
+using Node_based_texture_generator.Editor.Nodes.MathNode.Multiply.MultiplyBehaviour;
 using Unity.EditorCoroutines.Editor;
 using UnityEngine;
 using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes.MathNode
 {
-    public class AddNode : TextureGraphNode
+    public abstract class MathOperationNode<TOperator, TAttribute> : TextureGraphNode
+        where TAttribute : Attribute, INodeMathOperationAttribute where TOperator : IMathOperationBehaviour
     {
         [SerializeField, Input(connectionType = ConnectionType.Override)]
         private Texture a, b;
@@ -17,24 +20,24 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         [SerializeField] private object _result;
 
         private Texture _operatingTexture;
-        private Dictionary<Type, AddNodeAttribute[]> adderTypes;
+        private Dictionary<Type, TAttribute[]> adderTypes;
         private Dictionary<TypePair, Type> pairsToAdder;
         private const string resultPortName = "result";
 
-        [SerializeField] private IAddBehaviour _addBehaviour;
+        [SerializeField] private TOperator _addBehaviour;
         [SerializeField, HideInInspector] private NodePort resultTargetCache;
 
         private void OnValidate()
         {
             if (adderTypes == null || pairsToAdder == null)
             {
-                adderTypes = new Dictionary<Type, AddNodeAttribute[]>();
+                adderTypes = new Dictionary<Type, TAttribute[]>();
                 pairsToAdder = new Dictionary<TypePair, Type>();
-                var allAdders = Utility.Utility.FindAttributeUsers(typeof(AddNodeAttribute));
+                var allAdders = Utility.Utility.FindAttributeUsers(typeof(TAttribute));
                 foreach (var adder in allAdders)
                 {
-                    var arr = adder.GetCustomAttributes(typeof(AddNodeAttribute), true).ToArray();
-                    var output = Array.ConvertAll(arr, x => (AddNodeAttribute) x);
+                    var arr = adder.GetCustomAttributes(typeof(TAttribute), true).ToArray();
+                    var output = Array.ConvertAll(arr, x => (TAttribute) x);
                     foreach (var o in output)
                     {
                         pairsToAdder.Add(o.SupportedPair, adder);
@@ -53,8 +56,6 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         {
             if (_result is Texture t)
                 return t;
-
-
             return null;
 //            throw new System.NotImplementedException();
         }
@@ -166,15 +167,15 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             Type value;
             if (pairsToAdder.TryGetValue(pair, out value))
             {
-                if (value.GetInterfaces().Contains(typeof(IAddBehaviour)))
+                if (value.GetInterfaces().Contains(typeof(TOperator)))
                 {
                     var adderInstance = Activator.CreateInstance(value);
-                    if (adderInstance is IAddBehaviour addBehaviour)
+                    if (adderInstance is TOperator addBehaviour)
                     {
                         _addBehaviour = addBehaviour;
                     }
 
-                    _result = _addBehaviour.Add(a, b);
+                    _result = _addBehaviour.Perform(a, b);
                 }
                 else
                 {

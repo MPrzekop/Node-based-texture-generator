@@ -3,7 +3,9 @@ using UnityEngine;
 
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
-    public class SaturateNode : BlitWithInputPort
+    [CreateNodeMenu("Texture Generator/Image Operations/Saturate")]
+
+    public class Saturate : BlitWithInputPort
     {
         protected override void PrepareMaterial()
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Node_based_texture_generator.Editor.Nodes.MathNode.Add;
+using Node_based_texture_generator.Editor.Nodes.MathNode.Multiply.MultiplyBehaviour;
 using UnityEngine;
 
 
@@ -13,9 +14,9 @@ using UnityEngine;
 [AddNode(typeof(Vector2Int))]
 [AddNode(typeof(Vector3Int))]
 [AddNode(typeof(string))]
-public class BasicAddBehaviour : IAddBehaviour
+public class BasicAddBehaviour : IMathOperationBehaviour
 {
-    public object Add(object a, object b)
+    public object Perform(object a, object b)
     {
         dynamic aVal = a;
         dynamic bVal = b;

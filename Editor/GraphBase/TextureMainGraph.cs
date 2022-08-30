@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Node_based_texture_generator.Editor.Nodes;
+using Node_based_texture_generator.Editor.Nodes.Output;
 using UnityEngine;
 using XNode;
 

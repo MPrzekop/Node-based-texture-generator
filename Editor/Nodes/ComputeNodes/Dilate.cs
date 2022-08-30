@@ -2,7 +2,9 @@
 
 namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
 {
-    class DilateNode : BaseComputeNode
+    [CreateNodeMenu("Texture Generator/Image Operations/Dilate")]
+
+    class Dilate : BaseComputeNode
     {
         [Input(connectionType = ConnectionType.Override), SerializeField]
         private int dilationRadius;

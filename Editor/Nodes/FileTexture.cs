@@ -4,7 +4,9 @@ using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes
 {
-    public class FileTextureNode : TextureGraphNode
+    [CreateNodeMenu("Texture Generator/Values/Texture")]
+
+    public class FileTexture : TextureGraphNode
     {
         [SerializeField, Output(ShowBackingValue.Always)]
         private Texture texture;

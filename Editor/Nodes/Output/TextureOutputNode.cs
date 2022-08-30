@@ -1,20 +1,11 @@
-using System;
 using System.IO;
-using System.Linq;
+using Node_based_texture_generator.Editor.Utility;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
-using XNode;
 
-namespace Node_based_texture_generator.Editor.Nodes
+namespace Node_based_texture_generator.Editor.Nodes.Output
 {
-    enum FileFormat
-    {
-        PNG,
-        JPG,
-        EXR,
-        TGA
-    }
-
+    [CreateNodeMenu("Texture Generator/Output/Output To File")]
 
     public class TextureOutputNode : TextureGraphNode
     {

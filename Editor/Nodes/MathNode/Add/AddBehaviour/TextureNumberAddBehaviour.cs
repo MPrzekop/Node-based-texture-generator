@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Node_based_texture_generator.Editor.Nodes.MathNode.Multiply.MultiplyBehaviour;
+using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 
@@ -16,7 +17,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add.AddBehaviour
     [AddNode(typeof(Vector2), typeof(RenderTexture))]
     [AddNode(typeof(Vector3), typeof(RenderTexture))]
     [AddNode(typeof(Vector4), typeof(RenderTexture))]
-    public class TextureVectorAddBehaviour : IAddBehaviour
+    public class TextureVectorAddBehaviour : IMathOperationBehaviour
     {
         private RenderTexture _result;
 
@@ -44,7 +45,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add.AddBehaviour
             set => _commandBuffer = value;
         }
 
-        public object Add(object a, object b)
+        public object Perform(object a, object b)
         {
             if (a is Texture aTex)
             {
@@ -111,7 +112,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add.AddBehaviour
     [AddNode(typeof(float), typeof(RenderTexture))]
     [AddNode(typeof(int), typeof(RenderTexture))]
     [AddNode(typeof(double), typeof(RenderTexture))]
-    public class TextureNumberAddBehaviour : IAddBehaviour
+    public class TextureNumberAddBehaviour : IMathOperationBehaviour
     {
         private RenderTexture _result;
 
@@ -139,7 +140,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add.AddBehaviour
             set => _commandBuffer = value;
         }
 
-        public object Add(object a, object b)
+        public object Perform(object a, object b)
         {
             if (a is Texture aTex)
             {

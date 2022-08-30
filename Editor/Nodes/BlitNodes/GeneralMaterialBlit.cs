@@ -19,7 +19,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
         Texture,
         Int
     }
-
+    [CreateNodeMenu("Texture Generator/Image Operations/General Material Operation")]
     public class GeneralMaterialBlit : BlitNodeBase
     {
         [SerializeField] private Material _material;

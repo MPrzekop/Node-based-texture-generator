@@ -2,8 +2,9 @@ using UnityEngine;
 using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes
-{
-    public class TextureInfoNode : TextureGraphNode
+{    [CreateNodeMenu("Texture Generator/Misc/Texture Info")]
+
+    public class TextureInfo : TextureGraphNode
     {
         [Input(connectionType = ConnectionType.Override), SerializeField]
         private Texture texture;

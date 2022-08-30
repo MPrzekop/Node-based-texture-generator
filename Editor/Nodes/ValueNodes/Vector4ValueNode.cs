@@ -3,6 +3,9 @@ using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes.ValueNodes
 {
+    
+    [CreateNodeMenu("Texture Generator/Values/Vector 4")]
+
     public class Vector4ValueInput : TextureGraphNode
     {
         [Output(ShowBackingValue.Always), SerializeField]

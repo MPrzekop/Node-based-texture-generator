@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
-    public class RemapColorsNode : BlitWithInputPort
+    [CreateNodeMenu("Texture Generator/Image Operations/Remap Color Values")]
+
+    public class RemapColors : BlitWithInputPort
     {
         [SerializeField, Input()] private float oldMin = 0, oldMax = 1, newMin = 0, newMax = 1;
 

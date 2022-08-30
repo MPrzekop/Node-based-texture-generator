@@ -1,31 +1,13 @@
 ﻿using System;
 using System.Linq;
+using Node_based_texture_generator.Editor.Nodes.MathNode.Multiply;
 
 namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add
 {
-    public struct TypePair
-    {
-        public Type a, b;
-
-        public TypePair(Type both)
-        {
-            a = both;
-            b = both;
-        }
-
-        public TypePair(Type a, Type b)
-        {
-            this.a = a;
-            this.b = b;
-        }
-    }
-
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class AddNodeAttribute : Attribute
+    public class AddNodeAttribute :Attribute, INodeMathOperationAttribute
     {
         private TypePair _supportedPair;
-
-
         public AddNodeAttribute(Type a, Type b)
         {
             SupportedPair = new TypePair(a, b);

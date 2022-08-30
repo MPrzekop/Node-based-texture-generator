@@ -4,6 +4,8 @@ using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes.ValueNodes
 {
+    [CreateNodeMenu("Texture Generator/Values/Float")]
+
     public class FloatValueInput : TextureGraphNode
     {
         [Output(ShowBackingValue.Always), SerializeField]
