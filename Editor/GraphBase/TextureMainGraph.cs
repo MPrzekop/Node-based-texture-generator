@@ -9,8 +9,14 @@ namespace Node_based_texture_generator.Editor.GraphBase
     [CreateAssetMenu, RequireNode(typeof(TextureOutputNode))]
     public class TextureMainGraph : NodeGraph
     {
-        
-        
+        [SerializeField] private string _textureGraphName="Texture graph";
+
+        public string TextureGraphName
+        {
+            get => _textureGraphName;
+            set => _textureGraphName = value;
+        }
+
         public bool ValidateGraph()
         {
             for (int i = 0; i < nodes.Count; i++)

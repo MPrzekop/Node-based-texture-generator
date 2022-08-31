@@ -46,6 +46,9 @@ namespace Node_based_texture_generator.Editor.GraphBase
         public override void OnGUI()
         {
             base.OnGUI();
+            ((TextureMainGraph) target).TextureGraphName =
+                GUILayout.TextField(((TextureMainGraph) target).TextureGraphName);
+            NodeEditorWindow.current.titleContent = new GUIContent( ((TextureMainGraph) target).TextureGraphName);
             var e = Event.current;
 
             switch (e.type)
