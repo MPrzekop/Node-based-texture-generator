@@ -9,6 +9,8 @@ namespace Node_based_texture_generator.Editor.GraphBase
     [CreateAssetMenu, RequireNode(typeof(TextureOutputNode))]
     public class TextureMainGraph : NodeGraph
     {
+        
+        
         public bool ValidateGraph()
         {
             for (int i = 0; i < nodes.Count; i++)
