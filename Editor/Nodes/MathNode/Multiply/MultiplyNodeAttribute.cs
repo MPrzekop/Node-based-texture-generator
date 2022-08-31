@@ -4,19 +4,19 @@ using Node_based_texture_generator.Editor.Nodes.MathNode.Add;
 namespace Node_based_texture_generator.Editor.Nodes.MathNode.Multiply
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class MultiplyNodeAttribute : Attribute,INodeMathOperationAttribute
+    public class MultiplyNodeAttribute : Attribute, INodeMathOperationAttribute
     {
         private TypePair _supportedPair;
         private bool _orderMatters;
 
         public MultiplyNodeAttribute(Type a, Type b, bool orderMatters = true)
         {
-            SupportedPair = new TypePair(a, b);
+            SupportedPair = new TypePair(a, b, orderMatters);
         }
 
         public MultiplyNodeAttribute(Type both, bool orderMatters = true)
         {
-            SupportedPair = new TypePair(both, both);
+            SupportedPair = new TypePair(both, both, orderMatters);
         }
 
         public TypePair SupportedPair

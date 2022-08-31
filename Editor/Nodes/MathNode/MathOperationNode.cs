@@ -165,8 +165,11 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         {
             var pair = new TypePair(a.GetType(), b.GetType());
             Type value;
-            if (pairsToAdder.TryGetValue(pair, out value))
+            var typePair = pairsToAdder.Where(x => x.Key == pair).ToList();
+
+            if (typePair.Count > 0)
             {
+                value = typePair[0].Value;
                 if (value.GetInterfaces().Contains(typeof(TOperator)))
                 {
                     var adderInstance = Activator.CreateInstance(value);
@@ -185,6 +188,13 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             else
             {
                 Debug.Log("Unsupported types");
+                try
+                {
+                    RemoveDynamicPort(resultPortName);
+                }
+                catch
+                {
+                }
             }
         }
     }

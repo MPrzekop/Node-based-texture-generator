@@ -34,6 +34,26 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add
             }
         }
 
+        public bool Equals(TypePair other)
+        {
+            return this == other;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TypePair other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            if (OrderMatters)
+                return HashCode.Combine(a, b);
+            else
+            {
+                return a.GetHashCode() + b.GetHashCode();
+            }
+        }
+
         public static bool operator !=(TypePair a, TypePair b)
         {
             return !(a == b);
