@@ -1,5 +1,8 @@
 using System;
+using System.Linq;
 using Node_based_texture_generator.Editor.Nodes;
+using Node_based_texture_generator.Editor.Nodes.MathNode.Add;
+using Node_based_texture_generator.Editor.Nodes.MathNode.Multiply;
 using Node_based_texture_generator.Editor.Nodes.ValueNodes;
 using UnityEditor;
 using UnityEngine;
@@ -13,9 +16,30 @@ namespace Node_based_texture_generator.Editor.GraphBase
         public override void OnOpen()
         {
             base.OnOpen();
+
+            foreach (XNode.Node node in NodeEditorWindow.current.graph.nodes)
+            {
+                NodeEditorWindow.current.SelectNode(node, true);
+            }
+
+            NodeEditorWindow.current.Home();
+            foreach (XNode.Node node in NodeEditorWindow.current.graph.nodes)
+            {
+                NodeEditorWindow.current.DeselectNode(node);
+            }
         }
 
         private Action OnClick;
+
+
+        public void CreateNodeOnClick(Type t)
+        {
+            OnClick = () =>
+            {
+                CreateNode(t,
+                    NodeEditorWindow.current.WindowToGridPosition(Event.current.mousePosition));
+            };
+        }
 
         public override void OnGUI()
         {
@@ -26,7 +50,6 @@ namespace Node_based_texture_generator.Editor.GraphBase
             {
                 case EventType.MouseDown:
                     OnClick?.Invoke();
-
                     break;
                 case EventType.MouseUp:
                     break;
@@ -72,22 +95,14 @@ namespace Node_based_texture_generator.Editor.GraphBase
                         case KeyCode.Alpha0:
                             break;
                         case KeyCode.Alpha1:
-                            OnClick = () =>
-                            {
-                                CreateNode(typeof(FloatValueInput),
-                                    NodeEditorWindow.current.WindowToGridPosition(Event.current.mousePosition));
-                            };
+                            CreateNodeOnClick(typeof(FloatValueInput));
                             break;
                         case KeyCode.Alpha2:
                             break;
                         case KeyCode.Alpha3:
                             break;
                         case KeyCode.Alpha4:
-                            OnClick = () =>
-                            {
-                                CreateNode(typeof(Vector4ValueInput),
-                                    NodeEditorWindow.current.WindowToGridPosition(Event.current.mousePosition));
-                            };
+                            CreateNodeOnClick(typeof(Vector4ValueInput));
                             break;
                         case KeyCode.Alpha5:
                             break;
@@ -156,6 +171,7 @@ namespace Node_based_texture_generator.Editor.GraphBase
                         case KeyCode.BackQuote:
                             break;
                         case KeyCode.A:
+                            CreateNodeOnClick(typeof(Add));
                             break;
                         case KeyCode.B:
                             break;
@@ -180,6 +196,7 @@ namespace Node_based_texture_generator.Editor.GraphBase
                         case KeyCode.L:
                             break;
                         case KeyCode.M:
+                            CreateNodeOnClick(typeof(Multiply));
                             break;
                         case KeyCode.N:
                             break;
@@ -194,11 +211,7 @@ namespace Node_based_texture_generator.Editor.GraphBase
                         case KeyCode.S:
                             break;
                         case KeyCode.T:
-                            OnClick = () =>
-                            {
-                                CreateNode(typeof(FileTexture),
-                                    NodeEditorWindow.current.WindowToGridPosition(Event.current.mousePosition));
-                            };
+                            CreateNodeOnClick(typeof(FileTexture));
                             break;
                         case KeyCode.U:
                             break;
@@ -649,6 +662,9 @@ namespace Node_based_texture_generator.Editor.GraphBase
                             OnClick = null;
                             break;
                         case KeyCode.T:
+                            OnClick = null;
+                            break;
+                        default:
                             OnClick = null;
                             break;
                     }
