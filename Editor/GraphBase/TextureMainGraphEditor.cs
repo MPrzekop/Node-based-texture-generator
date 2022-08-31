@@ -1,4 +1,5 @@
 using System;
+using Node_based_texture_generator.Editor.Nodes;
 using Node_based_texture_generator.Editor.Nodes.ValueNodes;
 using UnityEditor;
 using UnityEngine;
@@ -20,10 +21,12 @@ namespace Node_based_texture_generator.Editor.GraphBase
         {
             base.OnGUI();
             var e = Event.current;
+
             switch (e.type)
             {
                 case EventType.MouseDown:
                     OnClick?.Invoke();
+
                     break;
                 case EventType.MouseUp:
                     break;
@@ -80,6 +83,11 @@ namespace Node_based_texture_generator.Editor.GraphBase
                         case KeyCode.Alpha3:
                             break;
                         case KeyCode.Alpha4:
+                            OnClick = () =>
+                            {
+                                CreateNode(typeof(Vector4ValueInput),
+                                    NodeEditorWindow.current.WindowToGridPosition(Event.current.mousePosition));
+                            };
                             break;
                         case KeyCode.Alpha5:
                             break;
@@ -186,6 +194,11 @@ namespace Node_based_texture_generator.Editor.GraphBase
                         case KeyCode.S:
                             break;
                         case KeyCode.T:
+                            OnClick = () =>
+                            {
+                                CreateNode(typeof(FileTexture),
+                                    NodeEditorWindow.current.WindowToGridPosition(Event.current.mousePosition));
+                            };
                             break;
                         case KeyCode.U:
                             break;
@@ -632,6 +645,12 @@ namespace Node_based_texture_generator.Editor.GraphBase
                             OnClick = null;
                             break;
                         }
+                        case KeyCode.Alpha4:
+                            OnClick = null;
+                            break;
+                        case KeyCode.T:
+                            OnClick = null;
+                            break;
                     }
 
                     break;
