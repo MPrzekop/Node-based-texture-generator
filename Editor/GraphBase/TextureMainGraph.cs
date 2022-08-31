@@ -9,7 +9,7 @@ namespace Node_based_texture_generator.Editor.GraphBase
     [CreateAssetMenu, RequireNode(typeof(TextureOutputNode))]
     public class TextureMainGraph : NodeGraph
     {
-        [SerializeField] private string _textureGraphName="Texture graph";
+        [SerializeField] private string _textureGraphName = "Texture graph";
 
         public string TextureGraphName
         {
@@ -33,6 +33,7 @@ namespace Node_based_texture_generator.Editor.GraphBase
 
         bool IsCyclic(Node currentNode, ref List<Node> visited)
         {
+            if (currentNode == null) return false;
             if (visited.Contains(currentNode))
             {
                 Debug.Log(currentNode.name + " is cyclic");
