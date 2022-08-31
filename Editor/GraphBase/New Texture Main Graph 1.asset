@@ -145,6 +145,54 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   texture: {fileID: 2800000, guid: 130708e255e9674419621a5d03f75558, type: 3}
+--- !u!114 &-5302252574675423823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f101069f67f84dd8a88b62671e782aaa, type: 3}
+  m_Name: Multiply
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3864.8438, y: 662.7751}
+  ports:
+    keys:
+    - a
+    - b
+    values:
+    - _fieldName: a
+      _node: {fileID: -5302252574675423823}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: b
+      _node: {fileID: -5302252574675423823}
+      _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  a: {fileID: 0}
+  b: {fileID: 0}
+  resultTargetCache:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
 --- !u!114 &-4847217537094559877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +206,7 @@ MonoBehaviour:
   m_Name: Texture Output
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3656, y: 920}
+  position: {x: 3736, y: 824}
   ports:
     keys:
     - texture
@@ -369,6 +417,7 @@ MonoBehaviour:
   - {fileID: 4811908059442498770}
   - {fileID: -8056534582646495416}
   - {fileID: 7982633937755035395}
+  - {fileID: -5302252574675423823}
 --- !u!114 &1370004523397958228
 MonoBehaviour:
   m_ObjectHideFlags: 0

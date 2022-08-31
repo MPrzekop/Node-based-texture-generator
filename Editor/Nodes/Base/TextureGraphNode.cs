@@ -88,7 +88,7 @@ namespace Node_based_texture_generator.Editor.Nodes
                 // Trigger it
                 if (connectedNode != null)
                 {
-                    connectedNode.OnInputChanged();
+                    connectedNode?.OnInputChanged();
                 }
             }
         }

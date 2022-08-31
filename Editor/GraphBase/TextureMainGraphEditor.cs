@@ -27,6 +27,8 @@ namespace Node_based_texture_generator.Editor.GraphBase
             {
                 NodeEditorWindow.current.DeselectNode(node);
             }
+
+            NodeEditorWindow.current.titleContent = new GUIContent("Texture graph");
         }
 
         private Action OnClick;
