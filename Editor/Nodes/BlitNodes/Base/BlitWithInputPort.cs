@@ -5,7 +5,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
 {
     public abstract class BlitWithInputPort : BlitNodeBase
     {
-        [Input(connectionType = ConnectionType.Override), SerializeField]
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Inherited), SerializeField]
         private Texture input;
 
         protected Texture Input => input;

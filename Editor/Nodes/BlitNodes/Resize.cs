@@ -1,6 +1,7 @@
 using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
@@ -13,15 +14,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 
         protected override void PrepareOperatingTexture()
         {
-            if (_operatingTexture != null)
-            {
-                _operatingTexture.Release();
-            }
-
-            resolution.x = Mathf.Max(1, resolution.x);
-            resolution.y = Mathf.Max(1, resolution.y);
-            _operatingTexture = new RenderTexture(resolution.x, resolution.y, 32, DefaultFormat.HDR);
-            _operatingTexture.Create();
+            _operatingTexture = ResizeTexture(_operatingTexture, resolution);
         }
 
         protected override void PrepareMaterial()
@@ -36,6 +29,37 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             PrepareOperatingTexture();
             UpdatePreviewTexture();
             base.OnInputChanged();
+        }
+
+        public override object GetValue(NodePort port)
+        {
+            return base.GetValue(port);
+        }
+
+        public static RenderTexture ResizeTexture(RenderTexture texture, Vector2Int resolution)
+        {
+            if (texture == null) return null;
+            if (texture.width == resolution.x && texture.height == resolution.y)
+            {
+                return texture;
+            }
+
+            if (texture != null)
+            {
+                texture.Release();
+            }
+
+            resolution.x = Mathf.Max(1, resolution.x);
+            resolution.y = Mathf.Max(1, resolution.y);
+            texture.width = resolution.x;
+            texture.height = resolution.y;
+            // if (texture == null)
+            // {
+            //     texture = new RenderTexture(resolution.x, resolution.y, 32, DefaultFormat.HDR);
+            // }
+
+            texture.Create();
+            return texture;
         }
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.Experimental.Rendering;
 namespace Node_based_texture_generator.Editor.Nodes.Output
 {
     [CreateNodeMenu("Texture Generator/Output/Output To File")]
-
     public class TextureOutputNode : TextureGraphNode
     {
         [Input(connectionType = ConnectionType.Override), SerializeField]
@@ -59,17 +58,6 @@ namespace Node_based_texture_generator.Editor.Nodes.Output
             UpdatePreviewTexture();
         }
 
-        public Texture2D toTexture2D(RenderTexture rt)
-        {
-            var texture = new Texture2D(rt.width, rt.height, rt.graphicsFormat, 0, TextureCreationFlags.None);
-            RenderTexture.active = rt;
-            texture.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
-            texture.Apply();
-
-            RenderTexture.active = null;
-
-            return texture;
-        }
 
         public void SaveTexture(string path = null)
         {
@@ -109,7 +97,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Output
                 path = UnityEditor.EditorUtility.SaveFilePanel("Save image", filePath ??= "", "texture", extension);
                 if (path.Length != 0)
                 {
-                    var textureToSave = toTexture2D(result);
+                    var textureToSave = Utility.Utility.ToTexture2D(result);
                     byte[] file = null;
                     switch (saveFormat)
                     {

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 namespace Node_based_texture_generator.Editor.Utility
 {
@@ -19,6 +21,26 @@ namespace Node_based_texture_generator.Editor.Utility
             }
 
             return result;
+        }
+        public static Texture2D ToTexture2D(RenderTexture rt)
+        {
+            var texture = new Texture2D(rt.width, rt.height, rt.graphicsFormat, 0, TextureCreationFlags.None);
+            RenderTexture.active = rt;
+            texture.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
+            texture.Apply();
+
+            RenderTexture.active = null;
+
+            return texture;
+        }
+        
+        public static Texture2D GetColoredTexture(Color c)
+        {
+            var inputTexture = new Texture2D(1, 1, DefaultFormat.HDR, TextureCreationFlags.None);
+            var textureColor = c;
+            inputTexture.SetPixel(0, 0, textureColor);
+            inputTexture.Apply();
+            return inputTexture;
         }
     }
 }

@@ -11,7 +11,6 @@ using UnityEngine.Experimental.Rendering;
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
     [CreateNodeMenu("Texture Generator/Image Operations/Grayscale")]
-
     public class Grayscale : BlitWithInputPort
     {
         public enum GrayscaleMode
@@ -28,7 +27,6 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 
         [SerializeField] private GrayscaleMode mode;
 
-       
 
         void SetMode()
         {
@@ -49,7 +47,6 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
         {
             PrepareMaterial();
             SetMode();
-            OnInputChanged();
             base.OnInputChanged();
         }
 
