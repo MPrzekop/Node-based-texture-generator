@@ -5,7 +5,6 @@ using UnityEngine.Experimental.Rendering;
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
     [CreateNodeMenu("Texture Generator/Image Operations/Resize")]
-
     public class Resize : BlitWithInputPort
     {
         [Input(backingValue = ShowBackingValue.Unconnected, connectionType = ConnectionType.Override), SerializeField]
@@ -30,18 +29,12 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             BlitMaterial = null;
         }
 
-        protected override void OnValidate()
-        {
-            OnInputChanged();
-            base.OnValidate();
-        }
-
         protected override void OnInputChanged()
         {
             if (GetPort("resolution").IsConnected)
                 resolution = GetPort("resolution").GetInputValue<Vector2Int>();
             PrepareOperatingTexture();
-            UpdateTexture();
+            UpdatePreviewTexture();
             base.OnInputChanged();
         }
     }

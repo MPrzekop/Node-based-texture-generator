@@ -30,7 +30,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
             set => blitBuffer = value;
         }
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             if (GetInputTexture() == null)
             {
@@ -85,7 +85,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
 
         protected override void OnInputChanged()
         {
-            UpdateTexture();
+            UpdatePreviewTexture();
             UpdateNode(GetPort("output"));
         }
 
@@ -97,7 +97,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
             {
                 if (output == null)
                 {
-                    UpdateTexture();
+                    UpdatePreviewTexture();
                 }
 
                 return this.output;

@@ -17,14 +17,14 @@ namespace Node_based_texture_generator.Editor.Nodes
             set => texture = value;
         }
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             return Texture;
         }
 
         protected override void OnInputChanged()
         {
-            UpdateTexture();
+            UpdatePreviewTexture();
             UpdateNode(GetPort("texture"));
         }
 
@@ -34,7 +34,7 @@ namespace Node_based_texture_generator.Editor.Nodes
             if (port.fieldName == "texture")
             {
                 // Return input value + 1
-                return this.GetTexture();
+                return this.GetPreviewTexture();
             }
             // Hopefully this won't ever happen, but we need to return something
             // in the odd case that the port isn't "result"

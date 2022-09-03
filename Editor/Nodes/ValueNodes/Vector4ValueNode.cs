@@ -11,7 +11,7 @@ namespace Node_based_texture_generator.Editor.Nodes.ValueNodes
         [Output(ShowBackingValue.Always), SerializeField]
         private Vector4 value;
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             var tex = new Texture2D(1, 1);
             tex.SetPixel(1, 1, value);
@@ -26,7 +26,7 @@ namespace Node_based_texture_generator.Editor.Nodes.ValueNodes
 
         protected override void OnInputChanged()
         {
-            UpdateTexture();
+            UpdatePreviewTexture();
             UpdateNode(GetPort("value"));
         }
 

@@ -52,7 +52,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
             }
         }
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             if (_result is Texture t)
                 return t;
@@ -120,7 +120,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         {
             OnValidate();
             GetInputs();
-            UpdateTexture();
+            UpdatePreviewTexture();
             try
             {
                 UpdateNode(GetPort(resultPortName));

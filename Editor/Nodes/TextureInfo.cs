@@ -12,7 +12,7 @@ namespace Node_based_texture_generator.Editor.Nodes
         [Output(ShowBackingValue.Unconnected), SerializeField]
         private Vector2Int resolution;
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             return texture;
         }
@@ -40,7 +40,7 @@ namespace Node_based_texture_generator.Editor.Nodes
                 resolution = texture == null ? Vector2Int.zero : new Vector2Int(texture.width, texture.height);
             }
 
-            UpdateTexture();
+            UpdatePreviewTexture();
             UpdateNode(GetPort("resolution"));
         }
     }

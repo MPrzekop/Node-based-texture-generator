@@ -55,19 +55,19 @@ namespace Node_based_texture_generator.Editor.Nodes
         {
             try
             {
-                ((TextureGraphNode) target).ONInputUpdate -= SelectChannel;
+                ((TextureGraphNode) target).OnInputUpdate -= SelectChannel;
             }
             catch
             {
                 //ignore
             }
 
-            ((TextureGraphNode) target).ONInputUpdate += SelectChannel;
+            ((TextureGraphNode) target).OnInputUpdate += SelectChannel;
             base.OnBodyGUI();
 
 
             EditorGUILayout.BeginVertical();
-            var t = ((TextureGraphNode) target).ResultTexture;
+            var t = ((TextureGraphNode) target).PreviewTexture;
 
             if (t != null)
             {
@@ -99,7 +99,7 @@ namespace Node_based_texture_generator.Editor.Nodes
 
         private void SelectChannel(int channel)
         {
-            var t = ((TextureGraphNode) target).ResultTexture;
+            var t = ((TextureGraphNode) target).PreviewTexture;
             if (t == null) return;
             if (_currentPreview == null || _currentPreview.width != t.width || _currentPreview.height != t.height)
             {

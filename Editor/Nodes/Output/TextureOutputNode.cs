@@ -30,7 +30,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Output
             {
                 result?.Release();
                 result = null;
-                UpdateTexture();
+                UpdatePreviewTexture();
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Output
             texture = result;
 
 
-            UpdateTexture();
+            UpdatePreviewTexture();
         }
 
         public Texture2D toTexture2D(RenderTexture rt)
@@ -144,7 +144,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Output
             }
         }
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             return texture;
         }

@@ -16,12 +16,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
         private static readonly int Oldmin = Shader.PropertyToID("_oldmin");
         private static readonly int Newmax = Shader.PropertyToID("_newmax");
 
-        protected override void OnValidate()
-        {
-            OnInputChanged();
-            base.OnValidate();
-        }
-
+      
 
         protected override void OnInputChanged()
         {

@@ -16,7 +16,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
 
         protected Texture Input => input;
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             return null;
         }
@@ -24,7 +24,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
         protected override void OnInputChanged()
         {
             input = GetPort("input").GetInputValue<Texture>();
-            UpdateTexture();
+            UpdatePreviewTexture();
             foreach (var output in Outputs)
             {
                 UpdateNode(output);

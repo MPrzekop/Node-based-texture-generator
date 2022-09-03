@@ -12,7 +12,7 @@ namespace Node_based_texture_generator.Editor.Nodes.ValueNodes
         private float value;
 
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             return null;
         }
@@ -24,7 +24,7 @@ namespace Node_based_texture_generator.Editor.Nodes.ValueNodes
 
         private void OnValidate()
         {
-            UpdateTexture();
+            UpdatePreviewTexture();
             UpdateNode(GetPort("value"));
         }
 

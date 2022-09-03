@@ -28,7 +28,7 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
             OnInputChanged();
         }
 
-        public override Texture GetTexture()
+        protected override Texture GetPreviewTexture()
         {
             return Output1;
         }
@@ -62,7 +62,7 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
             SetupShader();
             DispatchShader();
 
-            UpdateTexture();
+            UpdatePreviewTexture();
             UpdateNode(GetPort("output"));
         }
 

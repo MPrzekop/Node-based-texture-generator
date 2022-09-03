@@ -5,44 +5,63 @@ using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes
 {
+    /// <summary>
+    /// Base texture generator node that provides preview functionality and recurrent updates upon input change.
+    /// </summary>
     public abstract class TextureGraphNode : Node
     {
-        private Texture _resultTexture;
+        private Texture _previewTexture;
         private Action _onInputUpdate;
 
-        public Texture ResultTexture
+        public Texture PreviewTexture
         {
             get
             {
-                if (_resultTexture == null)
+                if (_previewTexture == null)
                 {
-                    _resultTexture = GetTexture();
+                    _previewTexture = GetPreviewTexture();
                 }
 
-                return _resultTexture;
+                return _previewTexture;
             }
         }
 
-        public Action ONInputUpdate
+        /// <summary>
+        /// internal action called when input changed or OnValidate method was invoked
+        /// </summary>
+        public Action OnInputUpdate
         {
             get => _onInputUpdate;
             set => _onInputUpdate = value;
         }
 
+        /// <summary>
+        /// provide node preview texture, if null then no preview will be drawn
+        /// </summary>
+        /// <returns></returns>
+        protected abstract Texture GetPreviewTexture();
 
-        public abstract Texture GetTexture();
-
-        public void UpdateTexture()
+        /// <summary>
+        /// Update preview texture
+        /// </summary>
+        protected void UpdatePreviewTexture()
         {
-            _resultTexture = GetTexture();
+            _previewTexture = GetPreviewTexture();
         }
 
 
         protected virtual void OnValidate()
         {
-            ONInputUpdate?.Invoke();
+            OnInputChanged();
+            OnInputUpdate?.Invoke();
         }
 
+        /// <summary>
+        /// Called when new connection is created.
+        /// Updates other connected nodes. Regenerates preview texture.
+        /// </summary>
+        /// <param name="from">source port</param>
+        /// <param name="to">target port</param>
         public override void OnCreateConnection(NodePort @from, NodePort to)
         {
             base.OnCreateConnection(@from, to);
@@ -54,11 +73,15 @@ namespace Node_based_texture_generator.Editor.Nodes
 
             ValidateConnection();
             OnInputChanged();
-            UpdateTexture();
-            ONInputUpdate?.Invoke();
+            UpdatePreviewTexture();
+            OnInputUpdate?.Invoke();
         }
 
-
+        /// <summary>
+        /// Called when connection was removed.
+        /// Updates other connected nodes. Regenerates preview texture.
+        /// </summary>
+        /// <param name="port">port that lost a connection</param>
         public override void OnRemoveConnection(NodePort port)
         {
             base.OnRemoveConnection(port);
@@ -67,15 +90,22 @@ namespace Node_based_texture_generator.Editor.Nodes
             }
 
             OnInputChanged();
-            UpdateTexture();
-            ONInputUpdate?.Invoke();
+            UpdatePreviewTexture();
+            OnInputUpdate?.Invoke();
         }
 
+        /// <summary>
+        /// Called when connection is created or removed, after node validation.
+        /// </summary>
         protected abstract void OnInputChanged();
 
+        /// <summary>
+        /// Update nodes connected to an output
+        /// </summary>
+        /// <param name="output">port from which the update will be performed</param>
         public void UpdateNode(NodePort output)
         {
-            UpdateTexture();
+            UpdatePreviewTexture();
             int connectionCount = output.ConnectionCount;
             for (int i = 0; i < connectionCount; i++)
             {
@@ -93,6 +123,10 @@ namespace Node_based_texture_generator.Editor.Nodes
             }
         }
 
+        /// <summary>
+        /// Check if node connections are valid
+        /// </summary>
+        /// <returns>true if node connections are valid</returns>
         bool ValidateConnection()
         {
             return ((TextureMainGraph) graph).ValidateGraph();

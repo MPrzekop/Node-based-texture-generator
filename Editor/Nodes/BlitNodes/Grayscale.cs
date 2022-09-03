@@ -28,13 +28,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 
         [SerializeField] private GrayscaleMode mode;
 
-        protected override void OnValidate()
-        {
-            PrepareMaterial();
-            SetMode();
-            OnInputChanged();
-            base.OnValidate();
-        }
+       
 
         void SetMode()
         {
@@ -53,6 +47,9 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 
         protected override void OnInputChanged()
         {
+            PrepareMaterial();
+            SetMode();
+            OnInputChanged();
             base.OnInputChanged();
         }
 
