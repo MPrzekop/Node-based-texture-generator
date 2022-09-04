@@ -27,8 +27,12 @@ namespace Node_based_texture_generator.Editor.Nodes.Output
 
             if (texture == null)
             {
-                result?.Release();
-                result = null;
+                if (result != null)
+                {
+                    result.Release();
+                    result = null;
+                }
+
                 UpdatePreviewTexture();
                 return;
             }

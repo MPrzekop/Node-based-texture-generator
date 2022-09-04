@@ -53,7 +53,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   shader: {fileID: 7200000, guid: da6f64721aa76614eb6c021520b8f716, type: 3}
-  dilationRadius: 1
+  dilationRadius: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 755971ffdd2e7a242b3c1d4ab6c5930a, type: 3}
-  m_Name: New Texture Main Graph
+  m_Name: Split Test
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 1754772302368892593}
