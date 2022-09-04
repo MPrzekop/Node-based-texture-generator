@@ -14,8 +14,10 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
         private Texture input;
 
         [Output(), SerializeField] private Texture _r, _g, _b, _a;
-        private char[] channels = new[] {'r', 'g', 'b', 'a'};
 
+        private RenderTexture[] _mrtRgba;
+        private static readonly int Input1 = Shader.PropertyToID("_input");
+        private RenderBuffer[] _mrbRgba;
         protected Texture Input => input;
 
         protected override Texture GetPreviewTexture()
@@ -23,6 +25,37 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
             return input;
         }
 
+
+        private void ReconstructBuffers()
+        {
+            if (input == null) return;
+            if (_mrtRgba == null)
+            {
+                _mrtRgba = new[]
+                {
+                    new RenderTexture(input.width, input.height, 24, RenderTextureFormat.DefaultHDR),
+                    new RenderTexture(input.width, input.height, 24, RenderTextureFormat.DefaultHDR),
+                    new RenderTexture(input.width, input.height, 24, RenderTextureFormat.DefaultHDR),
+                    new RenderTexture(input.width, input.height, 24, RenderTextureFormat.DefaultHDR)
+                };
+            }
+
+            if (_mrbRgba == null)
+            {
+                _mrbRgba = new[]
+                {
+                    _mrtRgba[0].colorBuffer, _mrtRgba[1].colorBuffer, _mrtRgba[2].colorBuffer, _mrtRgba[3].colorBuffer
+                };
+            }
+
+            if (_mrtRgba[0].width != input.width || _mrtRgba[0].height != input.height)
+            {
+                foreach (var tex in _mrtRgba)
+                {
+                    Utility.Utility.ResizeTexture(tex, new Vector2Int(input.width, input.height));
+                }
+            }
+        }
 
         private void RenderChannels()
         {
@@ -36,24 +69,10 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
             }
 
 
-            _mrtRgba = new[]
-            {
-                new RenderTexture(input.width, input.height, 24, RenderTextureFormat.DefaultHDR),
-                new RenderTexture(input.width, input.height, 24, RenderTextureFormat.DefaultHDR),
-                new RenderTexture(input.width, input.height, 24, RenderTextureFormat.DefaultHDR),
-                new RenderTexture(input.width, input.height, 24, RenderTextureFormat.DefaultHDR)
-            };
-
-
             foreach (var texture in _mrtRgba)
             {
                 texture.Create();
             }
-
-            RenderBuffer[] _mrbRgba = new[]
-            {
-                _mrtRgba[0].colorBuffer, _mrtRgba[1].colorBuffer, _mrtRgba[2].colorBuffer, _mrtRgba[3].colorBuffer
-            };
 
 
             var mat = new Material(Shader.Find("Przekop/TextureGraph/Split"));
@@ -69,6 +88,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
         protected override void OnInputChanged()
         {
             input = GetPort("input").GetInputValue<Texture>();
+            ReconstructBuffers();
             RenderChannels();
             UpdatePreviewTexture();
             foreach (var output in Outputs)
@@ -79,6 +99,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
 
         public override object GetValue(NodePort port)
         {
+            if (_mrtRgba == null) return null;
             _r = _mrtRgba[0];
             _g = _mrtRgba[1];
             _b = _mrtRgba[2];
@@ -106,43 +127,6 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
 
 
             return null;
-        }
-
-        static Mesh s_FullscreenMesh = null;
-        private RenderTexture[] _mrtRgba;
-        private static readonly int Input1 = Shader.PropertyToID("_input");
-
-        public static Mesh fullscreenMesh
-        {
-            get
-            {
-                if (s_FullscreenMesh != null)
-                    return s_FullscreenMesh;
-
-                float topV = 1.0f;
-                float bottomV = 0.0f;
-
-                s_FullscreenMesh = new Mesh {name = "Fullscreen Quad"};
-                s_FullscreenMesh.SetVertices(new List<Vector3>
-                {
-                    new Vector3(-1.0f, -1.0f, 0.0f),
-                    new Vector3(-1.0f, 1.0f, 0.0f),
-                    new Vector3(1.0f, -1.0f, 0.0f),
-                    new Vector3(1.0f, 1.0f, 0.0f)
-                });
-
-                s_FullscreenMesh.SetUVs(0, new List<Vector2>
-                {
-                    new Vector2(0.0f, bottomV),
-                    new Vector2(0.0f, topV),
-                    new Vector2(1.0f, bottomV),
-                    new Vector2(1.0f, topV)
-                });
-
-                s_FullscreenMesh.SetIndices(new[] {0, 1, 2, 2, 1, 3}, MeshTopology.Triangles, 0, false);
-                s_FullscreenMesh.UploadMeshData(true);
-                return s_FullscreenMesh;
-            }
         }
     }
 }

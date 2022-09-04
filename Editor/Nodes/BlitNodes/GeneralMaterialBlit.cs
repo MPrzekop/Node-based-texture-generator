@@ -19,6 +19,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
         Texture,
         Int
     }
+
     [CreateNodeMenu("Texture Generator/Image Operations/General Material Operation")]
     public class GeneralMaterialBlit : BlitNodeBase
     {
@@ -26,10 +27,11 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
         [SerializeField, HideInInspector] private List<NodePort> _dynamicPorts = new List<NodePort>();
 
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
             PrepareMaterial();
             SetMaterialProperties();
+            base.OnValidate();
         }
 
         protected override void PrepareMaterial()
@@ -166,7 +168,6 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
         protected override Texture GetInputTexture()
         {
             return _dynamicPorts.FirstOrDefault(x => x.ValueType == typeof(Texture))?.GetInputValue<Texture>();
-            return null;
         }
 
         protected override void OnInputChanged()

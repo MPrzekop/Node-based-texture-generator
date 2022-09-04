@@ -14,7 +14,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 
         protected override void PrepareOperatingTexture()
         {
-            _operatingTexture = ResizeTexture(_operatingTexture, resolution);
+            _operatingTexture = Utility.Utility.ResizeTexture(_operatingTexture, resolution);
         }
 
         protected override void PrepareMaterial()
@@ -36,30 +36,6 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             return base.GetValue(port);
         }
 
-        public static RenderTexture ResizeTexture(RenderTexture texture, Vector2Int resolution)
-        {
-            if (texture == null) return null;
-            if (texture.width == resolution.x && texture.height == resolution.y)
-            {
-                return texture;
-            }
-
-            if (texture != null)
-            {
-                texture.Release();
-            }
-
-            resolution.x = Mathf.Max(1, resolution.x);
-            resolution.y = Mathf.Max(1, resolution.y);
-            texture.width = resolution.x;
-            texture.height = resolution.y;
-            // if (texture == null)
-            // {
-            //     texture = new RenderTexture(resolution.x, resolution.y, 32, DefaultFormat.HDR);
-            // }
-
-            texture.Create();
-            return texture;
-        }
+      
     }
 }

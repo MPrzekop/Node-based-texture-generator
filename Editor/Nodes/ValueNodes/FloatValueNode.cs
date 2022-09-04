@@ -5,7 +5,6 @@ using XNode;
 namespace Node_based_texture_generator.Editor.Nodes.ValueNodes
 {
     [CreateNodeMenu("Texture Generator/Values/Float")]
-
     public class FloatValueInput : TextureGraphNode
     {
         [Output(ShowBackingValue.Always), SerializeField]
@@ -22,10 +21,10 @@ namespace Node_based_texture_generator.Editor.Nodes.ValueNodes
             OnValidate();
         }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
             UpdatePreviewTexture();
-            UpdateNode(GetPort("value"));
+            base.OnValidate();
         }
 
         public override object GetValue(NodePort port)

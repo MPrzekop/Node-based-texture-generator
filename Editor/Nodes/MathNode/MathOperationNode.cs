@@ -27,7 +27,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         [SerializeField] private TOperator _addBehaviour;
         [SerializeField, HideInInspector] private NodePort resultTargetCache;
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
             if (adderTypes == null || pairsToAdder == null)
             {
@@ -50,6 +50,8 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
                     }
                 }
             }
+
+            base.OnValidate();
         }
 
         protected override Texture GetPreviewTexture()

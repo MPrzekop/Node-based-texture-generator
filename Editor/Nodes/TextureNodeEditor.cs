@@ -74,21 +74,26 @@ namespace Node_based_texture_generator.Editor.Nodes
                 foldedOut = EditorGUILayout.Foldout(foldedOut, "Preview");
                 if (foldedOut)
                 {
-                    var newTabValue = GUILayout.Toolbar(_selectedChannel, headers);
-                    if (newTabValue != _selectedChannel || _currentPreview == null || t != _cache)
-                    {
-                        SelectChannel(newTabValue);
-                    }
-
-                    _cache = t;
-                    _selectedChannel = newTabValue;
-                    var r = EditorGUILayout.GetControlRect(GUILayout.Height(GetWidth() - 20));
-
-                    EditorGUI.DrawPreviewTexture(r, _currentPreview);
+                  DrawPreview(t);
                 }
             }
 
             EditorGUILayout.EndVertical();
+        }
+
+        void DrawPreview(Texture t)
+        {
+            var newTabValue = GUILayout.Toolbar(_selectedChannel, headers);
+            if (newTabValue != _selectedChannel || _currentPreview == null || t != _cache)
+            {
+                SelectChannel(newTabValue);
+            }
+
+            _cache = t;
+            _selectedChannel = newTabValue;
+            var r = EditorGUILayout.GetControlRect(GUILayout.Height(GetWidth() - 20));
+
+            EditorGUI.DrawPreviewTexture(r, _currentPreview);
         }
 
 

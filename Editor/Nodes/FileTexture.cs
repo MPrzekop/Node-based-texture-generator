@@ -5,7 +5,6 @@ using XNode;
 namespace Node_based_texture_generator.Editor.Nodes
 {
     [CreateNodeMenu("Texture Generator/Values/Texture")]
-
     public class FileTexture : TextureGraphNode
     {
         [SerializeField, Output(ShowBackingValue.Always)]
@@ -39,11 +38,6 @@ namespace Node_based_texture_generator.Editor.Nodes
             // Hopefully this won't ever happen, but we need to return something
             // in the odd case that the port isn't "result"
             else return null;
-        }
-
-        private void OnValidate()
-        {
-            OnInputChanged();
         }
     }
 }

@@ -1,4 +1,5 @@
 using Node_based_texture_generator.Editor.Nodes.BlitNodes;
+using Node_based_texture_generator.Editor.Utility;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Node_based_texture_generator.Tests.EditorTests.NodesTests.BlitNodes
             // Use the Assert class to test conditions
             var resolution = new Vector2Int(100, 200);
 
-            RenderTexture result = Resize.ResizeTexture(null, resolution);
+            RenderTexture result = Utility.ResizeTexture(null, resolution);
             Assert.Null(result);
             result?.Release();
         }
@@ -27,7 +28,7 @@ namespace Node_based_texture_generator.Tests.EditorTests.NodesTests.BlitNodes
             t.Create();
 
             var resolution = new Vector2Int(100, 200);
-            var result = Resize.ResizeTexture(t, resolution);
+            var result = Utility.ResizeTexture(t, resolution);
 
             Assert.AreEqual(resolution.x, result.width);
             Assert.AreEqual(resolution.y, result.height);
@@ -46,7 +47,7 @@ namespace Node_based_texture_generator.Tests.EditorTests.NodesTests.BlitNodes
             t.Create();
 
             var resolution = new Vector2Int(0, 0);
-            var result = Resize.ResizeTexture(t, resolution);
+            var result = Utility.ResizeTexture(t, resolution);
 
             Assert.Greater(result.width, resolution.x);
             Assert.Greater(result.height, resolution.y);
@@ -64,7 +65,7 @@ namespace Node_based_texture_generator.Tests.EditorTests.NodesTests.BlitNodes
             t.Create();
 
             var resolution = new Vector2Int(-1, -2);
-            var result = Resize.ResizeTexture(t, resolution);
+            var result = Utility.ResizeTexture(t, resolution);
 
             Assert.Greater(result.width, 0);
             Assert.Greater(result.height, 0);
@@ -82,7 +83,7 @@ namespace Node_based_texture_generator.Tests.EditorTests.NodesTests.BlitNodes
             t.Create();
 
             var resolution = startRes;
-            var result = Resize.ResizeTexture(t, resolution);
+            var result = Utility.ResizeTexture(t, resolution);
             Assert.NotNull(result);
             Assert.AreEqual(resolution.x, result.width);
             Assert.AreEqual(resolution.y, result.height);

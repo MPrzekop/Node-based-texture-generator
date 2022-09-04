@@ -23,11 +23,6 @@ namespace Node_based_texture_generator.Editor.Nodes.ComputeNodes
         }
 
 
-        private void OnValidate()
-        {
-            OnInputChanged();
-        }
-
         protected override Texture GetPreviewTexture()
         {
             return Output1;
