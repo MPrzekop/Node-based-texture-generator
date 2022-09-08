@@ -120,7 +120,6 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
 
         protected override void OnInputChanged()
         {
-            OnValidate();
             GetInputs();
             UpdatePreviewTexture();
             try
