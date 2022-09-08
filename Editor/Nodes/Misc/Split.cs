@@ -29,7 +29,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
         private void ReconstructBuffers()
         {
             if (input == null) return;
-            if (_mrtRgba == null)
+            if (_mrtRgba == null|| _mrtRgba.Length!=4)
             {
                 _mrtRgba = new[]
                 {
@@ -87,7 +87,8 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
 
         protected override void OnInputChanged()
         {
-            input = GetPort("input").GetInputValue<Texture>();
+            GetPortValue(ref input,"input");
+           // input = GetPort("input").GetInputValue<Texture>();
             ReconstructBuffers();
             RenderChannels();
             UpdatePreviewTexture();
@@ -99,7 +100,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
 
         public override object GetValue(NodePort port)
         {
-            if (_mrtRgba == null) return null;
+            if (_mrtRgba == null|| _mrtRgba.Length<4) return null;
             _r = _mrtRgba[0];
             _g = _mrtRgba[1];
             _b = _mrtRgba[2];

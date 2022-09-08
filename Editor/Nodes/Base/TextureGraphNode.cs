@@ -131,5 +131,21 @@ namespace Node_based_texture_generator.Editor.Nodes
         {
             return ((TextureMainGraph) graph).ValidateGraph();
         }
+        
+        
+        /// <summary>
+        /// Get value if port is connected
+        /// </summary>
+        /// <param name="t">where to put the value</param>
+        /// <param name="name">name of the port</param>
+        protected void GetPortValue<T>(ref T t, string name)
+        {
+            if (GetInputPort(name).IsConnected)
+            {
+                t = GetInputPort(name).GetInputValue<T>();
+            }
+        }
+        
+        
     }
 }
