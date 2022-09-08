@@ -2,11 +2,14 @@ using Node_based_texture_generator.Editor.Nodes.MathNode.Multiply.MultiplyBehavi
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add.AddBehaviour
 {
     [AddNode(typeof(Texture))]
     [AddNode(typeof(RenderTexture))]
+    [AddNode(typeof(RenderTexture), typeof(Texture))]
+    [AddNode(typeof(Texture), typeof(RenderTexture))]
     public class TextureAddBehaviour : IMathOperationBehaviour
     {
         private RenderTexture result;

@@ -1,0 +1,25 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+int seed;
+RWTexture2D<float4> Result;
+
+/**
+ * source https://gist.github.com/keijiro/ee7bc388272548396870
+ * \param uv 
+ * \return 
+ */
+float nrand(float2 uv)
+{
+    return frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453);
+}   
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+
+    Result[id.xy] = float4(nrand(id.xy+float2(seed,seed*7)),nrand(id.xy+float2(seed*13,seed*27)),nrand(id.xy+seed),nrand(id.xy+float2(seed*3,seed*127)));
+}

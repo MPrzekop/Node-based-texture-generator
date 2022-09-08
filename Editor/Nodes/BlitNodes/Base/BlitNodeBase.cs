@@ -43,19 +43,24 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
 
             PrepareOperatingTexture();
             PrepareMaterial();
+            RenderToResult(ref _operatingTexture);
+            output = _operatingTexture;
+            return output;
+        }
+
+
+        protected virtual void RenderToResult(ref RenderTexture result)
+        {
             if (BlitMaterial != null)
             {
-                BlitBuffer.Blit(GetBlitInputTexture(), _operatingTexture, BlitMaterial);
+                BlitBuffer.Blit(GetBlitInputTexture(), result, BlitMaterial);
             }
             else
             {
-                BlitBuffer.Blit(GetBlitInputTexture(), _operatingTexture);
+                BlitBuffer.Blit(GetBlitInputTexture(), result);
             }
 
             ExecuteCommandBuffer();
-
-            output = _operatingTexture;
-            return output;
         }
 
         /// <summary>

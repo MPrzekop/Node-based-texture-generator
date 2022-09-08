@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 {
-    [CreateNodeMenu("Texture Generator/Image Operations/Remap Color Values")]
+    [CreateNodeMenu("Texture Generator/Math/Remap Color Values")]
 
     public class RemapColors : BlitWithInputPort
     {
