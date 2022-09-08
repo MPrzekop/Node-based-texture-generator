@@ -1,3 +1,4 @@
+using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using UnityEngine;
 using UnityEngine.Rendering;
 using XNode;
@@ -5,45 +6,25 @@ using XNode;
 namespace Node_based_texture_generator.Editor.Nodes.Misc
 {
     [CreateNodeMenu("Texture Generator/Image Operations/Combine Colors")]
-
-    public class Combine : TextureGraphNode
+    public class Combine : BlitNodeBase
     {
-        [Output(connectionType = ConnectionType.Override), SerializeField]
-        private Texture result;
-
         [Input(connectionType = ConnectionType.Override), SerializeField]
         private Texture _r, _g, _b, _a;
 
-        [SerializeField, HideInInspector] private RenderTexture _operatingTexture;
 
         private Vector2Int _resolution;
-        private CommandBuffer _commandBuffer;
+
         private static readonly int A = Shader.PropertyToID("_a");
         private static readonly int B = Shader.PropertyToID("_b");
         private static readonly int G = Shader.PropertyToID("_g");
         private static readonly int R = Shader.PropertyToID("_r");
 
-        public CommandBuffer Buffer
-        {
-            get
-            {
-                if (_commandBuffer == null)
-                {
-                    _commandBuffer = new CommandBuffer();
-                }
 
-                return _commandBuffer;
-            }
-            set => _commandBuffer = value;
-        }
+        // protected override Texture GetPreviewTexture()
+        // {
+        //     return result;
+        // }
 
-
-        protected override Texture GetPreviewTexture()
-        {
-            return result;
-        }
-
-        
 
         void CollectInputs()
         {
@@ -73,38 +54,58 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
             }
         }
 
-        void PrepareResult()
+        // void PrepareResult()
+        // {
+        //     if (_resolution.x < 0)
+        //     {
+        //         if (_operatingTexture != null)
+        //         {
+        //             _operatingTexture.Release();
+        //         }
+        //
+        //         _operatingTexture = null;
+        //         result = _operatingTexture;
+        //         return;
+        //     }
+        //
+        //     if (_operatingTexture == null)
+        //     {
+        //         _operatingTexture = new RenderTexture(_resolution.x, _resolution.y, 0, RenderTextureFormat.DefaultHDR);
+        //         _operatingTexture.Create();
+        //     }
+        //
+        //     if (_operatingTexture.height != _resolution.x || _operatingTexture.width != _resolution.y)
+        //     {
+        //         _operatingTexture = Utility.Utility.ResizeIfDifferentResolutionTexture(_operatingTexture, _resolution);
+        //     }
+        //
+        //     result = _operatingTexture;
+        // }
+
+
+        // void RenderResult()
+        // {
+        //     if (_operatingTexture == null) return;
+        //    
+        //     Buffer.Blit(null, _operatingTexture, mat);
+        //
+        //     Graphics.ExecuteCommandBuffer(Buffer);
+        //     Buffer.Clear();
+        // }
+
+        protected override void OnInputChanged()
         {
-            if (_resolution.x < 0)
-            {
-                if (_operatingTexture != null)
-                {
-                    _operatingTexture.Release();
-                }
-
-                _operatingTexture = null;
-                result = _operatingTexture;
-                return;
-            }
-
-            if (_operatingTexture == null)
-            {
-                _operatingTexture = new RenderTexture(_resolution.x, _resolution.y, 0, RenderTextureFormat.DefaultHDR);
-                _operatingTexture.Create();
-            }
-
-            if (_operatingTexture.height != _resolution.x || _operatingTexture.width != _resolution.y)
-            {
-                _operatingTexture = Utility.Utility.ResizeIfDifferentResolutionTexture(_operatingTexture, _resolution);
-            }
-
-            result = _operatingTexture;
+            CollectInputs();
+            base.OnInputChanged();
         }
 
-
-        void RenderResult()
+        protected override Vector2Int GetOutputResolution()
         {
-            if (_operatingTexture == null) return;
+            return _resolution;
+        }
+
+        protected override void PrepareMaterial()
+        {
             var mat = new Material(Shader.Find("Przekop/TextureGraph/Combine"));
             mat.SetTexture(R, _r);
             mat.SetTexture(G, _g);
@@ -112,27 +113,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
             mat.SetTexture(B, _b);
 
             mat.SetTexture(A, _a);
-            Buffer.Blit(null, _operatingTexture, mat);
-
-            Graphics.ExecuteCommandBuffer(Buffer);
-            Buffer.Clear();
-        }
-
-        protected override void OnInputChanged()
-        {
-            CollectInputs();
-            PrepareResult();
-            RenderResult();
-        }
-
-        public override object GetValue(NodePort port)
-        {
-            if (port.fieldName == "result")
-            {
-                return result;
-            }
-
-            return base.GetValue(port);
+            BlitMaterial = mat;
         }
     }
 }

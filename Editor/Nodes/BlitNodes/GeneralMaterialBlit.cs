@@ -25,7 +25,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
     {
         [SerializeField] private Material _material;
         [SerializeField, HideInInspector] private List<NodePort> _dynamicPorts = new List<NodePort>();
-
+        [SerializeField, Input] private Vector2Int outputResolution;
 
         protected override void OnValidate()
         {
@@ -165,13 +165,20 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
         }
 
 
-        protected override Texture GetInputTexture()
+        protected override Texture GetBlitInputTexture()
         {
             return _dynamicPorts.FirstOrDefault(x => x.ValueType == typeof(Texture))?.GetInputValue<Texture>();
         }
 
+        protected override Vector2Int GetOutputResolution()
+        {
+            return outputResolution;
+        }
+
         protected override void OnInputChanged()
         {
+            GetPortValue(ref outputResolution, "outputResolution");
+
             PrepareMaterial();
             SetMaterialProperties();
             base.OnInputChanged();

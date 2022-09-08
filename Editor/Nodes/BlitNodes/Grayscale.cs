@@ -38,7 +38,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
             }
         }
 
-        protected override Texture GetInputTexture()
+        protected override Texture GetBlitInputTexture()
         {
             return Input;
         }

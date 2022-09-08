@@ -11,9 +11,16 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
         protected Texture Input => input;
 
 
-        protected override Texture GetInputTexture()
+        protected override Texture GetBlitInputTexture()
         {
             return Input;
+        }
+
+        protected override Vector2Int GetOutputResolution()
+        {
+            if (Input == null)
+                return base.GetOutputResolution();
+            return new Vector2Int(Input.width, Input.height);
         }
 
 

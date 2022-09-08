@@ -4,6 +4,8 @@ using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
 {
+    //TODO refactor
+    //to much depends on getinputtexture which can be null in implementations, i would replace it with getresolution
     public abstract class BlitNodeBase : TextureGraphNode
     {
         [SerializeField, Output(ShowBackingValue.Never)]
@@ -32,7 +34,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
 
         protected override Texture GetPreviewTexture()
         {
-            if (GetInputTexture() == null)
+            if (GetOutputResolution().x < 0)
             {
                 output = null;
                 return null;
@@ -43,11 +45,11 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
             PrepareMaterial();
             if (BlitMaterial != null)
             {
-                BlitBuffer.Blit(GetInputTexture(), _operatingTexture, BlitMaterial);
+                BlitBuffer.Blit(GetBlitInputTexture(), _operatingTexture, BlitMaterial);
             }
             else
             {
-                BlitBuffer.Blit(GetInputTexture(), _operatingTexture);
+                BlitBuffer.Blit(GetBlitInputTexture(), _operatingTexture);
             }
 
             ExecuteCommandBuffer();
@@ -56,13 +58,29 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
             return output;
         }
 
-        protected abstract Texture GetInputTexture();
+        /// <summary>
+        /// Get output resolution where -1,-1 means error/no output
+        /// </summary>
+        /// <returns></returns>
+        protected virtual Vector2Int GetOutputResolution()
+        {
+            return new Vector2Int(-1, -1);
+        }
+
+        /// <summary>
+        /// Provide input texture for Blit('INPUT',result,material)
+        /// </summary>
+        /// <returns>input texture null if none</returns>
+        protected virtual Texture GetBlitInputTexture()
+        {
+            return null;
+        }
 
         protected virtual void PrepareOperatingTexture()
         {
             if (_operatingTexture != null &&
-                (GetInputTexture().width != _operatingTexture.width ||
-                 GetInputTexture().height != _operatingTexture.height))
+                (GetOutputResolution().x != _operatingTexture.width ||
+                 GetOutputResolution().y != _operatingTexture.height))
             {
                 RenderTexture.ReleaseTemporary(_operatingTexture);
                 _operatingTexture = null;
@@ -71,7 +89,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
             if (_operatingTexture == null)
             {
                 _operatingTexture =
-                    RenderTexture.GetTemporary(GetInputTexture().width, GetInputTexture().height, 32,
+                    RenderTexture.GetTemporary(GetOutputResolution().x, GetOutputResolution().y, 0,
                         RenderTextureFormat.DefaultHDR);
                 _operatingTexture.Create();
             }
