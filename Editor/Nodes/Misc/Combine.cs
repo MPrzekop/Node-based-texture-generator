@@ -4,6 +4,8 @@ using XNode;
 
 namespace Node_based_texture_generator.Editor.Nodes.Misc
 {
+    [CreateNodeMenu("Texture Generator/Image Operations/Combine Colors")]
+
     public class Combine : TextureGraphNode
     {
         [Output(connectionType = ConnectionType.Override), SerializeField]
