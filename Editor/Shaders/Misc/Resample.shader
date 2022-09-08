@@ -124,14 +124,14 @@ Shader "Przekop/TextureGraph/Resample"
 /*ASEBEGIN
 Version=17800
 376;73;1179;576;982.532;219.1983;1.3;True;False
-Node;AmplifyShaderEditor.SamplerNode;2;-796,58;Inherit;True;Property;_UVMap;UVMap;1;0;Create;True;0;0;False;0;-1;d611d6f49dd07344aa1277ada0f6bf6c;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;2;-796,58;Inherit;True;Property;_UVMap;UVMap;1;0;Create;True;0;0;False;0;-1;d611d6f49dd07344aa1277ada0f6bf6c;d611d6f49dd07344aa1277ada0f6bf6c;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.ComponentMaskNode;4;-458.9087,135.6063;Inherit;False;True;True;False;False;1;0;COLOR;0,0,0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.SimpleRemainderNode;5;-227.5966,142.8918;Inherit;True;2;0;FLOAT2;0,0;False;1;FLOAT2;1,1;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.SamplerNode;1;-293,-133;Inherit;True;Property;_MainTex;MainTex;0;0;Create;True;0;0;False;0;-1;64e7766099ad46747a07014e44d0aea1;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;1;-293,-133;Inherit;True;Property;_MainTex;MainTex;0;0;Create;True;0;0;False;0;-1;64e7766099ad46747a07014e44d0aea1;64e7766099ad46747a07014e44d0aea1;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;241.5996,1.607801;Float;False;True;-1;2;ASEMaterialInspector;100;1;Przekop/TextureGraph/Resample;0770190933193b94aaa3065e307002fa;True;Unlit;0;0;Unlit;2;True;0;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;True;0;False;-1;0;False;-1;True;False;True;0;False;-1;True;True;True;True;True;0;False;-1;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;RenderType=Opaque=RenderType;True;2;0;False;False;False;False;False;False;False;False;False;True;1;LightMode=ForwardBase;False;0;;0;0;Standard;1;Vertex Position,InvertActionOnDeselection;1;0;1;True;False;;0
 WireConnection;4;0;2;0
 WireConnection;5;0;4;0
 WireConnection;1;1;5;0
 WireConnection;0;0;1;0
 ASEEND*/
-//CHKSM=60DF3E177B3F662963E545239006B83616E645C1
+//CHKSM=986F65ADD238E19717FB966E962B3E83C86D2E2E

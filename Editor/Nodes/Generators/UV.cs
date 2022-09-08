@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Node_based_texture_generator.Editor.Nodes.BlitNodes.Base;
 using UnityEngine;
 
-public class UV : MonoBehaviour
+public class UV : BlitNodeBase
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField, Input] private Vector2Int outputResolution;
+
+
+    protected override void PrepareMaterial()
     {
-        
+        BlitMaterial = new Material(Shader.Find("Przekop/TextureGraph/UVGenerator"));
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override Vector2Int GetOutputResolution()
     {
-        
+        if (outputResolution.x <= 0) outputResolution.x = 1;
+        if (outputResolution.y <= 0) outputResolution.y = 1;
+        return outputResolution;
+    }
+    
+    protected override void OnInputChanged()
+    {
+        GetPortValue(ref outputResolution, "outputResolution");
+
+
+        base.OnInputChanged();
     }
 }
