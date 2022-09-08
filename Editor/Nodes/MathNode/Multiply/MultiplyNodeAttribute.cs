@@ -29,6 +29,6 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode.Multiply
 
     public interface INodeMathOperationAttribute
     {
-        public TypePair SupportedPair { get; set; }
+         TypePair SupportedPair { get; set; }
     }
 }

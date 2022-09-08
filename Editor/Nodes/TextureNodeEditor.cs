@@ -34,6 +34,21 @@ namespace Node_based_texture_generator.Editor.Nodes
         private int _selectedChannel = 0;
         private readonly string[] headers = new[] {"All", "R", "G", "B", "A"};
         private bool foldedOut = false;
+        private CommandBuffer _commandBuffer;
+
+        public CommandBuffer Buffer
+        {
+            get
+            {
+                if (_commandBuffer == null)
+                {
+                    _commandBuffer = new CommandBuffer();
+                }
+
+                return _commandBuffer;
+            }
+            set => _commandBuffer = value;
+        }
 
         private Material channelSelectMaterial;
 
@@ -74,7 +89,7 @@ namespace Node_based_texture_generator.Editor.Nodes
                 foldedOut = EditorGUILayout.Foldout(foldedOut, "Preview");
                 if (foldedOut)
                 {
-                  DrawPreview(t);
+                    DrawPreview(t);
                 }
             }
 
@@ -84,11 +99,8 @@ namespace Node_based_texture_generator.Editor.Nodes
         void DrawPreview(Texture t)
         {
             var newTabValue = GUILayout.Toolbar(_selectedChannel, headers);
-            if (newTabValue != _selectedChannel || _currentPreview == null || t != _cache)
-            {
-                SelectChannel(newTabValue);
-            }
 
+            SelectChannel(newTabValue);
             _cache = t;
             _selectedChannel = newTabValue;
             var r = EditorGUILayout.GetControlRect(GUILayout.Height(GetWidth() - 20));
@@ -106,18 +118,17 @@ namespace Node_based_texture_generator.Editor.Nodes
         {
             var t = ((TextureGraphNode) target).PreviewTexture;
             if (t == null) return;
-            if (_currentPreview == null || _currentPreview.width != t.width || _currentPreview.height != t.height)
+            if (_currentPreview == null)
             {
-                if (_currentPreview != null) _currentPreview.Release();
                 _currentPreview = new RenderTexture(t.width, t.height, 24, DefaultFormat.HDR);
             }
 
+            _currentPreview =
+                Utility.Utility.ResizeIfDifferentResolutionTexture(_currentPreview, new Vector2Int(t.width, t.height));
             SetMode(channel);
-            var commandBuffer = new CommandBuffer();
-
-            commandBuffer.Blit(t, _currentPreview, ChannelSelectMaterial);
-            Graphics.ExecuteCommandBuffer(commandBuffer);
-            commandBuffer.Clear();
+            Buffer.Blit(t, _currentPreview, ChannelSelectMaterial);
+            Graphics.ExecuteCommandBuffer(Buffer);
+            Buffer.Clear();
         }
 
         void SetMode(int mode)

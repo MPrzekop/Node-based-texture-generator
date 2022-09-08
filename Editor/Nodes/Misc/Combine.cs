@@ -93,7 +93,7 @@ namespace Node_based_texture_generator.Editor.Nodes.Misc
 
             if (_operatingTexture.height != _resolution.x || _operatingTexture.width != _resolution.y)
             {
-                _operatingTexture = Utility.Utility.ResizeTexture(_operatingTexture, _resolution);
+                _operatingTexture = Utility.Utility.ResizeIfDifferentResolutionTexture(_operatingTexture, _resolution);
             }
 
             result = _operatingTexture;

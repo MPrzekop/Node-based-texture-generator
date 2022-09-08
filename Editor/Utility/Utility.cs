@@ -43,7 +43,7 @@ namespace Node_based_texture_generator.Editor.Utility
             return inputTexture;
         }
         
-        public static RenderTexture ResizeTexture(RenderTexture texture, Vector2Int resolution)
+        public static RenderTexture ResizeIfDifferentResolutionTexture(RenderTexture texture, Vector2Int resolution)
         {
             if (texture == null) return null;
             if (texture.width == resolution.x && texture.height == resolution.y)

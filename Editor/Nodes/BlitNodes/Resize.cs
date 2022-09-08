@@ -14,7 +14,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes
 
         protected override void PrepareOperatingTexture()
         {
-            _operatingTexture = Utility.Utility.ResizeTexture(_operatingTexture, resolution);
+            _operatingTexture = Utility.Utility.ResizeIfDifferentResolutionTexture(_operatingTexture, resolution);
         }
 
         protected override void PrepareMaterial()

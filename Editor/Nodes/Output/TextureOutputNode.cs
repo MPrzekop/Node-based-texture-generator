@@ -98,7 +98,11 @@ namespace Node_based_texture_generator.Editor.Nodes.Output
                         break;
                 }
 
-                path = UnityEditor.EditorUtility.SaveFilePanel("Save image", filePath ??= "", "texture", extension);
+                if (filePath == null)
+                {
+                    filePath = "";
+                }
+                path = UnityEditor.EditorUtility.SaveFilePanel("Save image", filePath, "texture", extension);
                 if (path.Length != 0)
                 {
                     var textureToSave = Utility.Utility.ToTexture2D(result);
