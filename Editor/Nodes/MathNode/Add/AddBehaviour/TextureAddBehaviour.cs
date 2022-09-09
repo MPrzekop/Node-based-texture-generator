@@ -7,9 +7,12 @@ using UnityEngine.UI;
 namespace Node_based_texture_generator.Editor.Nodes.MathNode.Add.AddBehaviour
 {
     [AddNode(typeof(Texture))]
+    [AddNode(typeof(Texture2D))]
     [AddNode(typeof(RenderTexture))]
     [AddNode(typeof(RenderTexture), typeof(Texture))]
+    [AddNode(typeof(RenderTexture), typeof(Texture2D))]
     [AddNode(typeof(Texture), typeof(RenderTexture))]
+    [AddNode(typeof(Texture2D), typeof(RenderTexture))]
     public class TextureAddBehaviour : IMathOperationBehaviour
     {
         private RenderTexture result;

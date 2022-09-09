@@ -27,7 +27,33 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         [SerializeField] private TOperator _addBehaviour;
         [SerializeField, HideInInspector] private NodePort resultTargetCache;
 
-        protected override void OnValidate()
+        public Dictionary<Type, TAttribute[]> AdderTypes
+        {
+            get
+            {
+                if (adderTypes == null)
+                {
+                    SetupAdders();
+                }
+                return adderTypes;
+            }
+            set => adderTypes = value;
+        }
+
+        public Dictionary<TypePair, Type> PairsToAdder
+        {
+            get
+            {
+                if (pairsToAdder == null)
+                {
+                    SetupAdders();
+                }
+                return pairsToAdder;
+            }
+            set => pairsToAdder = value;
+        }
+
+        void SetupAdders()
         {
             if (adderTypes == null || pairsToAdder == null)
             {
@@ -50,7 +76,11 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
                     }
                 }
             }
-
+        }
+        
+        protected override void OnValidate()
+        {
+            SetupAdders();
             base.OnValidate();
         }
 
@@ -166,7 +196,7 @@ namespace Node_based_texture_generator.Editor.Nodes.MathNode
         {
             var pair = new TypePair(a.GetType(), b.GetType());
             Type value;
-            var typePair = pairsToAdder.Where(x => x.Key == pair).ToList();
+            var typePair = PairsToAdder.Where(x => x.Key == pair).ToList();
 
             if (typePair.Count > 0)
             {

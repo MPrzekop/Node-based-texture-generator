@@ -83,6 +83,7 @@ namespace Node_based_texture_generator.Editor.Nodes.BlitNodes.Base
 
         protected virtual void PrepareOperatingTexture()
         {
+            if (GetOutputResolution().x < 0) return;
             if (_operatingTexture != null &&
                 (GetOutputResolution().x != _operatingTexture.width ||
                  GetOutputResolution().y != _operatingTexture.height))
