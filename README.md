@@ -2,7 +2,7 @@
 
 Node based texture generation/editing system. Inspired by ASE and Substance Designer. Designed for fast in-editor adjustments.
 <p align="center">
-  <img src="https://github.com/MPrzekop/Node-based-texture-generator/blob/Images/Images/Resample.gif" width="70%" title="Graph Demo">
+  <img src="https://github.com/MPrzekop/Node-based-texture-generator/blob/Images/Images/ChannelMixing.gif" width="70%" title="Graph Demo">
 </p>
  
 ## Features
@@ -24,3 +24,10 @@ Package is currently in alpha, meaning it can export texture to file and perform
 Go to `Window -> Package Manager` and add from git [URL](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using this URL:
 `https://github.com/MPrzekop/Node-based-texture-generator.git`
 Package is created using Unity 2021.3 and depends on [XNode](https://github.com/Siccity/xNode) 
+
+## Screenshots
+<p align="center">
+  <img src="https://github.com/MPrzekop/Node-based-texture-generator/blob/Images/Images/Dilate.gif" width="20%" title="basic sphere with snow material">
+  <img src="https://github.com/MPrzekop/Node-based-texture-generator/blob/Images/Images/PreviewColor.gif" width="20%" title="sphere without textures with glitter and SSS">
+  <img src="https://github.com/MPrzekop/Node-based-texture-generator/blob/Images/Images/Resample.gif" width="20%" title="sphere with glitter and no SSS"> 
+</p>
