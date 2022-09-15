@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 755971ffdd2e7a242b3c1d4ab6c5930a, type: 3}
-  m_Name: New Texture Main Graph
+  m_Name: Demo split combine graph
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -9209424103208812598}
