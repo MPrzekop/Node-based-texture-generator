@@ -22,6 +22,7 @@ Node based texture generation/editing system. Inspired by ASE and Substance Desi
 ## Instalation
 ### alpha
 Package is currently in alpha, meaning it can export texture to file and perform implemented operations, but there might be bugs, interfaces can change and documentation is incomplete. 
+
 [Documentation](https://mprzekop.github.io/Node-based-texture-generator/)
 ### Package Manager
 Go to `Window -> Package Manager` and add from git [URL](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using this URL:
