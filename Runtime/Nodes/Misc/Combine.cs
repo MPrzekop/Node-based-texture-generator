@@ -99,6 +99,11 @@ namespace Node_based_texture_generator.Runtime.Nodes.Misc
 
         protected override Vector2Int GetOutputResolution()
         {
+            if (_resolution.x == 0)
+            {
+                _resolution = new Vector2Int(-1, -1);
+            }
+
             return _resolution;
         }
 
