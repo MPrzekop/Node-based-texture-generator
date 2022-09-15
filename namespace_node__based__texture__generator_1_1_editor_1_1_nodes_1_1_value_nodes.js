@@ -1,0 +1,5 @@
+var namespace_node__based__texture__generator_1_1_editor_1_1_nodes_1_1_value_nodes =
+[
+    [ "FloatValueInput", "class_node__based__texture__generator_1_1_editor_1_1_nodes_1_1_value_nodes_1_1_float_value_input.html", "class_node__based__texture__generator_1_1_editor_1_1_nodes_1_1_value_nodes_1_1_float_value_input" ],
+    [ "Vector4ValueInput", "class_node__based__texture__generator_1_1_editor_1_1_nodes_1_1_value_nodes_1_1_vector4_value_input.html", "class_node__based__texture__generator_1_1_editor_1_1_nodes_1_1_value_nodes_1_1_vector4_value_input" ]
+];
