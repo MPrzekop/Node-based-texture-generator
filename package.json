@@ -1,6 +1,6 @@
 {
   "name": "com.mprzekop.nodebasedtexturegenerator",
-  "version": "0.1.0",
+  "version": "0.1.1a",
   "unity": "2021.3",
   "displayName": "Node based texture generator",
   "dependencies": {
