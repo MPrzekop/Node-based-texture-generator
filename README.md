@@ -5,6 +5,8 @@ Node based texture generation/editing system. Inspired by ASE and Substance Desi
   <img src="https://github.com/MPrzekop/Node-based-texture-generator/blob/Images/Images/ChannelMixing.gif" width="70%" title="Graph Demo">
 </p>
  
+ [Documentation](https://mprzekop.github.io/Node-based-texture-generator/)
+ 
 ## Features
 * real-time per node preview
 * Exporting to jpg, png, EXR and TGA
@@ -20,6 +22,7 @@ Node based texture generation/editing system. Inspired by ASE and Substance Desi
 ## Instalation
 ### alpha
 Package is currently in alpha, meaning it can export texture to file and perform implemented operations, but there might be bugs, interfaces can change and documentation is incomplete. 
+[Documentation](https://mprzekop.github.io/Node-based-texture-generator/)
 ### Package Manager
 Go to `Window -> Package Manager` and add from git [URL](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using this URL:
 `https://github.com/MPrzekop/Node-based-texture-generator.git`
