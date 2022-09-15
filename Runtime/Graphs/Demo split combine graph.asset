@@ -90,7 +90,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: _b
+      - fieldName: _g
         node: {fileID: 4591923214011321754}
         reroutePoints: []
       _direction: 1
@@ -102,7 +102,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: _r
+      - fieldName: _b
         node: {fileID: 4591923214011321754}
         reroutePoints: []
       _direction: 1
@@ -114,7 +114,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: _g
+      - fieldName: _r
         node: {fileID: 4591923214011321754}
         reroutePoints: []
       _direction: 1
@@ -165,7 +165,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: _g
+      - fieldName: _b
         node: {fileID: 3042593887317946418}
         reroutePoints: []
       _direction: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: _b
+      - fieldName: _r
         node: {fileID: 3042593887317946418}
         reroutePoints: []
       _direction: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Texture, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: _r
+      - fieldName: _g
         node: {fileID: 3042593887317946418}
         reroutePoints: []
       _direction: 0
